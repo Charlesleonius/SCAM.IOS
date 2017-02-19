@@ -19,6 +19,9 @@
 		FF4733EF1E59423900C4FE23 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733EE1E59423900C4FE23 /* Media.xcassets */; };
 		FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */; };
 		FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F21E595F1300C4FE23 /* IntroViewController.swift */; };
+		FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4911651E59766D00BA6960 /* LoginViewController.swift */; };
+		FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED11E5978FB00633BD5 /* Bolts.framework */; };
+		FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED21E5978FB00633BD5 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +65,11 @@
 		FF4733EE1E59423900C4FE23 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		FF4733F21E595F1300C4FE23 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		FF4911651E59766D00BA6960 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAM/Pods-SCAM.debug.xcconfig"; sourceTree = "<group>"; };
+		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
+		FFDC2ED11E5978FB00633BD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
+		FFDC2ED21E5978FB00633BD5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Release-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */,
+				FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */,
 				5FF3DE8FB46C3D3C66C178C3 /* Pods_SCAM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +105,8 @@
 		34EE44FD87D269AD5EA77B76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFDC2ED11E5978FB00633BD5 /* Bolts.framework */,
+				FFDC2ED21E5978FB00633BD5 /* Parse.framework */,
 				3F27967945147C7B42D66406 /* Pods_SCAM.framework */,
 				AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */,
 				8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */,
@@ -148,6 +159,7 @@
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
 				FF4911641E59749900BA6960 /* Login and Registration */,
 				FF4733CC1E59419300C4FE23 /* Info.plist */,
+				FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */,
 			);
 			path = SCAM;
 			sourceTree = "<group>";
@@ -174,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
+				FF4911651E59766D00BA6960 /* LoginViewController.swift */,
 				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
 			);
 			name = "Login and Registration";
@@ -256,6 +269,7 @@
 					FF4733BA1E59419300C4FE23 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 422QZQQ2SX;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					FF4733D01E59419300C4FE23 = {
@@ -448,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */,
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
@@ -601,11 +616,15 @@
 			baseConfigurationReference = FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCAM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCAM/SCAM-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -615,11 +634,14 @@
 			baseConfigurationReference = 2D704919F3119A508692E383 /* Pods-SCAM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCAM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCAM/SCAM-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
