@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733BE1E59419300C4FE23 /* AppDelegate.swift */; };
+		FF4733C11E59419300C4FE23 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733C01E59419300C4FE23 /* MasterViewController.swift */; };
+		FF4733C31E59419300C4FE23 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733C21E59419300C4FE23 /* DetailViewController.swift */; };
+		FF4733C61E59419300C4FE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C41E59419300C4FE23 /* Main.storyboard */; };
+		FF4733C81E59419300C4FE23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C71E59419300C4FE23 /* Assets.xcassets */; };
+		FF4733CB1E59419300C4FE23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */; };
+		FF4733D61E59419300C4FE23 /* SCAMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733D51E59419300C4FE23 /* SCAMTests.swift */; };
+		FF4733E11E59419300C4FE23 /* SCAMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733E01E59419300C4FE23 /* SCAMUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF4733D21E59419300C4FE23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF4733B31E59419300C4FE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF4733BA1E59419300C4FE23;
+			remoteInfo = SCAM;
+		};
+		FF4733DD1E59419300C4FE23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF4733B31E59419300C4FE23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF4733BA1E59419300C4FE23;
+			remoteInfo = SCAM;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FF4733BB1E59419300C4FE23 /* SCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4733BE1E59419300C4FE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF4733C01E59419300C4FE23 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		FF4733C21E59419300C4FE23 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FF4733C51E59419300C4FE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF4733C71E59419300C4FE23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4733CA1E59419300C4FE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF4733CC1E59419300C4FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4733D11E59419300C4FE23 /* SCAMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCAMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4733D51E59419300C4FE23 /* SCAMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAMTests.swift; sourceTree = "<group>"; };
+		FF4733D71E59419300C4FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4733DC1E59419300C4FE23 /* SCAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4733E01E59419300C4FE23 /* SCAMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAMUITests.swift; sourceTree = "<group>"; };
+		FF4733E21E59419300C4FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF4733B81E59419300C4FE23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733CE1E59419300C4FE23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733D91E59419300C4FE23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF4733B21E59419300C4FE23 = {
+			isa = PBXGroup;
+			children = (
+				FF4733BD1E59419300C4FE23 /* SCAM */,
+				FF4733D41E59419300C4FE23 /* SCAMTests */,
+				FF4733DF1E59419300C4FE23 /* SCAMUITests */,
+				FF4733BC1E59419300C4FE23 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF4733BC1E59419300C4FE23 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF4733BB1E59419300C4FE23 /* SCAM.app */,
+				FF4733D11E59419300C4FE23 /* SCAMTests.xctest */,
+				FF4733DC1E59419300C4FE23 /* SCAMUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF4733BD1E59419300C4FE23 /* SCAM */ = {
+			isa = PBXGroup;
+			children = (
+				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
+				FF4733C01E59419300C4FE23 /* MasterViewController.swift */,
+				FF4733C21E59419300C4FE23 /* DetailViewController.swift */,
+				FF4733C41E59419300C4FE23 /* Main.storyboard */,
+				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
+				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
+				FF4733CC1E59419300C4FE23 /* Info.plist */,
+			);
+			path = SCAM;
+			sourceTree = "<group>";
+		};
+		FF4733D41E59419300C4FE23 /* SCAMTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF4733D51E59419300C4FE23 /* SCAMTests.swift */,
+				FF4733D71E59419300C4FE23 /* Info.plist */,
+			);
+			path = SCAMTests;
+			sourceTree = "<group>";
+		};
+		FF4733DF1E59419300C4FE23 /* SCAMUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF4733E01E59419300C4FE23 /* SCAMUITests.swift */,
+				FF4733E21E59419300C4FE23 /* Info.plist */,
+			);
+			path = SCAMUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF4733BA1E59419300C4FE23 /* SCAM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4733E51E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAM" */;
+			buildPhases = (
+				FF4733B71E59419300C4FE23 /* Sources */,
+				FF4733B81E59419300C4FE23 /* Frameworks */,
+				FF4733B91E59419300C4FE23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCAM;
+			productName = SCAM;
+			productReference = FF4733BB1E59419300C4FE23 /* SCAM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF4733D01E59419300C4FE23 /* SCAMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4733E81E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMTests" */;
+			buildPhases = (
+				FF4733CD1E59419300C4FE23 /* Sources */,
+				FF4733CE1E59419300C4FE23 /* Frameworks */,
+				FF4733CF1E59419300C4FE23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4733D31E59419300C4FE23 /* PBXTargetDependency */,
+			);
+			name = SCAMTests;
+			productName = SCAMTests;
+			productReference = FF4733D11E59419300C4FE23 /* SCAMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF4733DB1E59419300C4FE23 /* SCAMUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4733EB1E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMUITests" */;
+			buildPhases = (
+				FF4733D81E59419300C4FE23 /* Sources */,
+				FF4733D91E59419300C4FE23 /* Frameworks */,
+				FF4733DA1E59419300C4FE23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4733DE1E59419300C4FE23 /* PBXTargetDependency */,
+			);
+			name = SCAMUITests;
+			productName = SCAMUITests;
+			productReference = FF4733DC1E59419300C4FE23 /* SCAMUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF4733B31E59419300C4FE23 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = SCAM16;
+				TargetAttributes = {
+					FF4733BA1E59419300C4FE23 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 422QZQQ2SX;
+						ProvisioningStyle = Automatic;
+					};
+					FF4733D01E59419300C4FE23 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 422QZQQ2SX;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FF4733BA1E59419300C4FE23;
+					};
+					FF4733DB1E59419300C4FE23 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 422QZQQ2SX;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FF4733BA1E59419300C4FE23;
+					};
+				};
+			};
+			buildConfigurationList = FF4733B61E59419300C4FE23 /* Build configuration list for PBXProject "SCAM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF4733B21E59419300C4FE23;
+			productRefGroup = FF4733BC1E59419300C4FE23 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF4733BA1E59419300C4FE23 /* SCAM */,
+				FF4733D01E59419300C4FE23 /* SCAMTests */,
+				FF4733DB1E59419300C4FE23 /* SCAMUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF4733B91E59419300C4FE23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4733CB1E59419300C4FE23 /* LaunchScreen.storyboard in Resources */,
+				FF4733C81E59419300C4FE23 /* Assets.xcassets in Resources */,
+				FF4733C61E59419300C4FE23 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733CF1E59419300C4FE23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733DA1E59419300C4FE23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF4733B71E59419300C4FE23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4733C31E59419300C4FE23 /* DetailViewController.swift in Sources */,
+				FF4733C11E59419300C4FE23 /* MasterViewController.swift in Sources */,
+				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733CD1E59419300C4FE23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4733D61E59419300C4FE23 /* SCAMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4733D81E59419300C4FE23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4733E11E59419300C4FE23 /* SCAMUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF4733D31E59419300C4FE23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF4733BA1E59419300C4FE23 /* SCAM */;
+			targetProxy = FF4733D21E59419300C4FE23 /* PBXContainerItemProxy */;
+		};
+		FF4733DE1E59419300C4FE23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF4733BA1E59419300C4FE23 /* SCAM */;
+			targetProxy = FF4733DD1E59419300C4FE23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FF4733C41E59419300C4FE23 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4733C51E59419300C4FE23 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4733CA1E59419300C4FE23 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF4733E31E59419300C4FE23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF4733E41E59419300C4FE23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF4733E61E59419300C4FE23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		FF4733E71E59419300C4FE23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		FF4733E91E59419300C4FE23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCAM.app/SCAM";
+			};
+			name = Debug;
+		};
+		FF4733EA1E59419300C4FE23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCAM.app/SCAM";
+			};
+			name = Release;
+		};
+		FF4733EC1E59419300C4FE23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = SCAM;
+			};
+			name = Debug;
+		};
+		FF4733ED1E59419300C4FE23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 422QZQQ2SX;
+				INFOPLIST_FILE = SCAMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SCAM16.SCAMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = SCAM;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF4733B61E59419300C4FE23 /* Build configuration list for PBXProject "SCAM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4733E31E59419300C4FE23 /* Debug */,
+				FF4733E41E59419300C4FE23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4733E51E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4733E61E59419300C4FE23 /* Debug */,
+				FF4733E71E59419300C4FE23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FF4733E81E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4733E91E59419300C4FE23 /* Debug */,
+				FF4733EA1E59419300C4FE23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FF4733EB1E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4733EC1E59419300C4FE23 /* Debug */,
+				FF4733ED1E59419300C4FE23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF4733B31E59419300C4FE23 /* Project object */;
+}
