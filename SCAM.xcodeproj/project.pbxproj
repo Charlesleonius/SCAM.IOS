@@ -141,13 +141,12 @@
 		FF4733BD1E59419300C4FE23 /* SCAM */ = {
 			isa = PBXGroup;
 			children = (
-				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
-				FF4733C41E59419300C4FE23 /* Main.storyboard */,
-				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
-				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
 				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
+				FF4733C41E59419300C4FE23 /* Main.storyboard */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
+				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
+				FF4911641E59749900BA6960 /* Login and Registration */,
 				FF4733CC1E59419300C4FE23 /* Info.plist */,
 			);
 			path = SCAM;
@@ -169,6 +168,15 @@
 				FF4733E21E59419300C4FE23 /* Info.plist */,
 			);
 			path = SCAMUITests;
+			sourceTree = "<group>";
+		};
+		FF4911641E59749900BA6960 /* Login and Registration */ = {
+			isa = PBXGroup;
+			children = (
+				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
+				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
+			);
+			name = "Login and Registration";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
