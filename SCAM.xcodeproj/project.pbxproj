@@ -15,6 +15,7 @@
 		FF4733CB1E59419300C4FE23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */; };
 		FF4733D61E59419300C4FE23 /* SCAMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733D51E59419300C4FE23 /* SCAMTests.swift */; };
 		FF4733E11E59419300C4FE23 /* SCAMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733E01E59419300C4FE23 /* SCAMUITests.swift */; };
+		FF4733EF1E59423900C4FE23 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733EE1E59423900C4FE23 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FF4733DC1E59419300C4FE23 /* SCAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4733E01E59419300C4FE23 /* SCAMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAMUITests.swift; sourceTree = "<group>"; };
 		FF4733E21E59419300C4FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4733EE1E59423900C4FE23 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				FF4733C21E59419300C4FE23 /* DetailViewController.swift */,
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
+				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FF4733CC1E59419300C4FE23 /* Info.plist */,
 			);
@@ -240,6 +243,7 @@
 			files = (
 				FF4733CB1E59419300C4FE23 /* LaunchScreen.storyboard in Resources */,
 				FF4733C81E59419300C4FE23 /* Assets.xcassets in Resources */,
+				FF4733EF1E59423900C4FE23 /* Media.xcassets in Resources */,
 				FF4733C61E59419300C4FE23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
