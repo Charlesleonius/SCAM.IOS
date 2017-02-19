@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FF3DE8FB46C3D3C66C178C3 /* Pods_SCAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F27967945147C7B42D66406 /* Pods_SCAM.framework */; };
+		808998DEFCED2F6BF36D78BA /* Pods_SCAMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */; };
+		98752FBE5D8B71CA86496587 /* Pods_SCAMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */; };
 		FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733BE1E59419300C4FE23 /* AppDelegate.swift */; };
-		FF4733C11E59419300C4FE23 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733C01E59419300C4FE23 /* MasterViewController.swift */; };
-		FF4733C31E59419300C4FE23 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733C21E59419300C4FE23 /* DetailViewController.swift */; };
 		FF4733C61E59419300C4FE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C41E59419300C4FE23 /* Main.storyboard */; };
 		FF4733C81E59419300C4FE23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C71E59419300C4FE23 /* Assets.xcassets */; };
 		FF4733CB1E59419300C4FE23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */; };
 		FF4733D61E59419300C4FE23 /* SCAMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733D51E59419300C4FE23 /* SCAMTests.swift */; };
 		FF4733E11E59419300C4FE23 /* SCAMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733E01E59419300C4FE23 /* SCAMUITests.swift */; };
 		FF4733EF1E59423900C4FE23 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733EE1E59423900C4FE23 /* Media.xcassets */; };
+		FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */; };
+		FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F21E595F1300C4FE23 /* IntroViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D704919F3119A508692E383 /* Pods-SCAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCAM/Pods-SCAM.release.xcconfig"; sourceTree = "<group>"; };
+		3F27967945147C7B42D66406 /* Pods_SCAM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCAM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81CC59D15BC0E9BF0F8467AC /* Pods-SCAMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMUITests/Pods-SCAMUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCAMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BA724D1AC00373771C3144F /* Pods-SCAMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMUITests/Pods-SCAMUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCAMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30387C2B317A513CBF8C863 /* Pods-SCAMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4DBF3A86DD65B2A640F1FF6 /* Pods-SCAMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.release.xcconfig"; sourceTree = "<group>"; };
 		FF4733BB1E59419300C4FE23 /* SCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4733BE1E59419300C4FE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF4733C01E59419300C4FE23 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		FF4733C21E59419300C4FE23 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF4733C51E59419300C4FE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF4733C71E59419300C4FE23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF4733CA1E59419300C4FE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +60,9 @@
 		FF4733E01E59419300C4FE23 /* SCAMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAMUITests.swift; sourceTree = "<group>"; };
 		FF4733E21E59419300C4FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF4733EE1E59423900C4FE23 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		FF4733F21E595F1300C4FE23 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAM/Pods-SCAM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FF3DE8FB46C3D3C66C178C3 /* Pods_SCAM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808998DEFCED2F6BF36D78BA /* Pods_SCAMTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +86,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98752FBE5D8B71CA86496587 /* Pods_SCAMUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34EE44FD87D269AD5EA77B76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F27967945147C7B42D66406 /* Pods_SCAM.framework */,
+				AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */,
+				8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A0DEC8B2844ACA38ED1B00F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */,
+				2D704919F3119A508692E383 /* Pods-SCAM.release.xcconfig */,
+				B30387C2B317A513CBF8C863 /* Pods-SCAMTests.debug.xcconfig */,
+				F4DBF3A86DD65B2A640F1FF6 /* Pods-SCAMTests.release.xcconfig */,
+				81CC59D15BC0E9BF0F8467AC /* Pods-SCAMUITests.debug.xcconfig */,
+				9BA724D1AC00373771C3144F /* Pods-SCAMUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FF4733B21E59419300C4FE23 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +123,8 @@
 				FF4733D41E59419300C4FE23 /* SCAMTests */,
 				FF4733DF1E59419300C4FE23 /* SCAMUITests */,
 				FF4733BC1E59419300C4FE23 /* Products */,
+				8A0DEC8B2844ACA38ED1B00F /* Pods */,
+				34EE44FD87D269AD5EA77B76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,9 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
-				FF4733C01E59419300C4FE23 /* MasterViewController.swift */,
-				FF4733C21E59419300C4FE23 /* DetailViewController.swift */,
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
+				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
+				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
 				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
@@ -138,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF4733E51E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAM" */;
 			buildPhases = (
+				876C9B7236A87DEC28F2DBE5 /* [CP] Check Pods Manifest.lock */,
 				FF4733B71E59419300C4FE23 /* Sources */,
 				FF4733B81E59419300C4FE23 /* Frameworks */,
 				FF4733B91E59419300C4FE23 /* Resources */,
+				6205EEBC40E4398FC15E5142 /* [CP] Embed Pods Frameworks */,
+				DB6DCA95C96C2FF84BFCC215 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF4733E81E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMTests" */;
 			buildPhases = (
+				3CF51680579544389F5DEFF4 /* [CP] Check Pods Manifest.lock */,
 				FF4733CD1E59419300C4FE23 /* Sources */,
 				FF4733CE1E59419300C4FE23 /* Frameworks */,
 				FF4733CF1E59419300C4FE23 /* Resources */,
+				DDE8D9B00CCB0315E60EB22A /* [CP] Embed Pods Frameworks */,
+				08655BE0EEE26BC48F23B9CF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF4733EB1E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMUITests" */;
 			buildPhases = (
+				1320EF8C46B8B55B93107F63 /* [CP] Check Pods Manifest.lock */,
 				FF4733D81E59419300C4FE23 /* Sources */,
 				FF4733D91E59419300C4FE23 /* Frameworks */,
 				FF4733DA1E59419300C4FE23 /* Resources */,
+				96703C016F1FA78123FBBA18 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,13 +312,136 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		08655BE0EEE26BC48F23B9CF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1320EF8C46B8B55B93107F63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3CF51680579544389F5DEFF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6205EEBC40E4398FC15E5142 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCAM/Pods-SCAM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		876C9B7236A87DEC28F2DBE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		96703C016F1FA78123FBBA18 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCAMUITests/Pods-SCAMUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB6DCA95C96C2FF84BFCC215 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCAM/Pods-SCAM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDE8D9B00CCB0315E60EB22A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FF4733B71E59419300C4FE23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF4733C31E59419300C4FE23 /* DetailViewController.swift in Sources */,
-				FF4733C11E59419300C4FE23 /* MasterViewController.swift in Sources */,
+				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
+				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +590,7 @@
 		};
 		FF4733E61E59419300C4FE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
@@ -432,6 +604,7 @@
 		};
 		FF4733E71E59419300C4FE23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D704919F3119A508692E383 /* Pods-SCAM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
@@ -445,6 +618,7 @@
 		};
 		FF4733E91E59419300C4FE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B30387C2B317A513CBF8C863 /* Pods-SCAMTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -460,6 +634,7 @@
 		};
 		FF4733EA1E59419300C4FE23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4DBF3A86DD65B2A640F1FF6 /* Pods-SCAMTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -475,6 +650,7 @@
 		};
 		FF4733EC1E59419300C4FE23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81CC59D15BC0E9BF0F8467AC /* Pods-SCAMUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
@@ -489,6 +665,7 @@
 		};
 		FF4733ED1E59419300C4FE23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BA724D1AC00373771C3144F /* Pods-SCAMUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
@@ -520,6 +697,7 @@
 				FF4733E71E59419300C4FE23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FF4733E81E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +706,7 @@
 				FF4733EA1E59419300C4FE23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FF4733EB1E59419300C4FE23 /* Build configuration list for PBXNativeTarget "SCAMUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +715,7 @@
 				FF4733ED1E59419300C4FE23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
