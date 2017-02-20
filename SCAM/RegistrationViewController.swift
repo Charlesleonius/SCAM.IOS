@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import SCLAlertView
 
 class RegistrationViewController: UIViewController {
 
@@ -85,9 +87,42 @@ class RegistrationViewController: UIViewController {
 
     @IBAction func register(_ sender: Any) {
         if (validEmail && validPassword && validPasswordConfirmation) {
-            print("Valid")
+            let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+            let waitingAlert = SCLAlertView(appearance: appearance)
+            let responder = waitingAlert.showWait("Please Wait", subTitle: "", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
+            let newUser = PFUser()
+            newUser.username = emailField.text?.lowercased()
+            newUser.password = passwordField.text
+            newUser.email = emailField.text?.lowercased()
+            newUser["deviceID"] = UIDevice.current.identifierForVendor!.uuidString
+            var localTimeZoneName: String { return (NSTimeZone.local as NSTimeZone).name }
+            newUser["timeZone"] = localTimeZoneName
+            newUser.signUpInBackground { (success: Bool, error: Error?) in
+                if (error == nil) {
+//                    if let deviceToken = UserDefaults.standard.object(forKey: "deviceToken") as? String {
+//                        PFCloud.callFunction(inBackground: "updateInstallation", withParameters: ["deviceToken": deviceToken.lowercased()])
+//                    }
+                    responder.close()
+                } else {
+                    responder.close()
+                    print(error?.localizedDescription ?? "")
+                    let errorAlert = SCLAlertView()
+                    var errorMessage = "Something went wrong, try again later!"
+                    switch error!._code {
+                    case 203:
+                        errorMessage = "This email is already is use, please try another."
+                        break
+                    case 202:
+                        errorMessage = "This email is already in use, please try another."
+                        break
+                    default:
+                        break
+                    }
+                    errorAlert.showError("Oops", subTitle: errorMessage)
+                }
+            }
         } else {
-            print("Invalid")
+            SCLAlertView().showError("Ooops", subTitle: "Please check all the fields for errors. When all the fields are blue, you're good to go.")
         }
     }
     

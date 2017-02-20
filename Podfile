@@ -5,6 +5,7 @@ target 'SCAM' do
   use_frameworks!
 
   pod 'Parse'
+  pod 'SCLAlertView'
 
   target 'SCAMTests' do
     inherit! :search_paths

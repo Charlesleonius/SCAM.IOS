@@ -6,6 +6,7 @@
 //  Copyright © 2017 SCAM16. All rights reserved.
 //
 import Parse
+import SCLAlertView
 
 class LoginViewController: UIViewController {
 
@@ -16,17 +17,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func signIn(_ sender: Any) {
-        if (emailField.text != nil && passwordField.text != nil) {
-            PFUser.logInWithUsername(inBackground: emailField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
-                if (error == nil) {
-                    print("Success")
-                } else {
-                    print(error?.localizedDescription)
-                }
+    @IBAction func logIn(_ sender: Any) {
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let waitingAlert = SCLAlertView(appearance: appearance)
+        let responder = waitingAlert.showWait("Please Wait", subTitle: "", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
+        PFUser.logInWithUsername(inBackground: emailField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
+            responder.close()
+            if (error == nil) {
+                print("Success")
+            } else {
+                SCLAlertView().showError("Oops", subTitle: (error?.localizedDescription)!)
             }
-        } else {
-            print("You're missing your email or password!")
         }
     }
     
