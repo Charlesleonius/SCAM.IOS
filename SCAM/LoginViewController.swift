@@ -20,11 +20,12 @@ class LoginViewController: UIViewController {
     @IBAction func logIn(_ sender: Any) {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         let waitingAlert = SCLAlertView(appearance: appearance)
-        let responder = waitingAlert.showWait("Please Wait", subTitle: "", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
-        PFUser.logInWithUsername(inBackground: emailField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
+        let responder = waitingAlert.showWait("Please Wait", subTitle: "We're trying to log you in.", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
+        PFUser.logInWithUsername(inBackground: emailField.text!.lowercased(), password: passwordField.text!) { (user: PFUser?, error: Error?) in
             responder.close()
             if (error == nil) {
-                print("Success")
+                let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                self.present(dashboard!, animated: true, completion: nil)
             } else {
                 SCLAlertView().showError("Oops", subTitle: (error?.localizedDescription)!)
             }

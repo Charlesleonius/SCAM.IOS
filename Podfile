@@ -6,6 +6,9 @@ target 'SCAM' do
 
   pod 'Parse'
   pod 'SCLAlertView'
+  pod 'JSQMessagesViewController'
+  pod 'ParseLiveQuery'
+  pod 'SideMenu'
 
   target 'SCAMTests' do
     inherit! :search_paths

@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import SCLAlertView
+import SafariServices
 
 class RegistrationViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style fields
         let fields = [emailField,  passwordField, passwordConfirmationField]
         for field in fields {
             field?.layer.borderWidth = 1
@@ -38,10 +40,20 @@ class RegistrationViewController: UIViewController {
         attributedString.addAttribute(NSForegroundColorAttributeName, value: self.navigationController?.view.backgroundColor ?? UIColor.blue , range: (termsOfServiceText as NSString).range(of: "Terms of Service."))
         termsOfService.attributedText = attributedString
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.showTermsAndCondition(_:)))
+        termsOfService.isUserInteractionEnabled = true
+        termsOfService.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @IBAction func showTermsAndCondition(_ sender: Any) {
+        let url = URL.init(string: "Https://scam16.herokuapp.com")
+        let svc = SFSafariViewController(url: url!)
+        self.present(svc, animated: true, completion: nil)
     }
 
     @IBAction func verifyEmail(_ sender: Any) {
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        //[A-Z0-9a-z._%+-] allows any of the following characters. +\\. requires a period before continuing text. [A-Z0-9a-z._%+-] allows any of these characters. '+@sjsu.edu' requires text to end with @sjsu.edu
+        let regex = "[A-Z0-9a-z._%+-]+\\.[A-Z0-9a-z._%+-]+@sjsu.edu"
         let test = NSPredicate(format:"SELF MATCHES %@", regex)
         if (test.evaluate(with: emailField.text)) {
             emailField.layer.borderColor = self.navigationController?.view.backgroundColor?.cgColor ?? UIColor.blue.cgColor
@@ -56,10 +68,11 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func verifyPassword(_ sender: Any) {
+        //Reset confirmation field when new password is entered
         passwordConfirmationField.text = ""
         passwordConfirmationField.layer.borderColor = UIColor.lightGray.cgColor
-        let regex = "[a-zA-Z0-9!@#$%^&*.(+=._-]{6,}"
-        let test = NSPredicate(format:"SELF MATCHES %@", regex)
+        //[a-zA-Z0-9!@#$%^&*.(+=._-] allows all the characters contained within the brackets while the {8,} creates an 8 character mininum with no maximum
+        let test = NSPredicate(format:"SELF MATCHES %@", "[a-zA-Z0-9!@#$%^&*.(+=._-]{8,}")
         if(test.evaluate(with: passwordField.text)) {
             passwordField.layer.borderColor = self.navigationController?.view.backgroundColor?.cgColor ?? UIColor.blue.cgColor
             validPassword = true
@@ -89,23 +102,30 @@ class RegistrationViewController: UIViewController {
         if (validEmail && validPassword && validPasswordConfirmation) {
             let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
             let waitingAlert = SCLAlertView(appearance: appearance)
-            let responder = waitingAlert.showWait("Please Wait", subTitle: "", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
+            let responder = waitingAlert.showWait("Please Wait", subTitle: "We're trying to get you signed up!", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)
+            let firstLastDirty = emailField.text?.components(separatedBy: CharacterSet(charactersIn: ".@"))
+            let firstname = firstLastDirty?[0]
+            let lastname = firstLastDirty?[1]
+            
             let newUser = PFUser()
-            newUser.username = emailField.text?.lowercased()
-            newUser.password = passwordField.text
-            newUser.email = emailField.text?.lowercased()
+            newUser.username = self.emailField.text
+            newUser.email = self.emailField.text
+            newUser.password = self.passwordField.text
+            newUser["firstName"] = firstname!.capitalized
+            newUser["lastName"] = lastname!.capitalized
             newUser["deviceID"] = UIDevice.current.identifierForVendor!.uuidString
-            var localTimeZoneName: String { return (NSTimeZone.local as NSTimeZone).name }
-            newUser["timeZone"] = localTimeZoneName
             newUser.signUpInBackground { (success: Bool, error: Error?) in
                 if (error == nil) {
-//                    if let deviceToken = UserDefaults.standard.object(forKey: "deviceToken") as? String {
-//                        PFCloud.callFunction(inBackground: "updateInstallation", withParameters: ["deviceToken": deviceToken.lowercased()])
-//                    }
+                    /** Will be used later **/
+                    //                    if let deviceToken = UserDefaults.standard.object(forKey: "deviceToken") as? String {
+                    //                        PFCloud.callFunction(inBackground: "updateInstallation", withParameters: ["deviceToken": deviceToken.lowercased()])
+                    //                    }
                     responder.close()
+                    //Show next screen
+                    let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                    self.present(dashboard!, animated: true, completion: nil)
                 } else {
                     responder.close()
-                    print(error?.localizedDescription ?? "")
                     let errorAlert = SCLAlertView()
                     var errorMessage = "Something went wrong, try again later!"
                     switch error!._code {
@@ -115,6 +135,8 @@ class RegistrationViewController: UIViewController {
                     case 202:
                         errorMessage = "This email is already in use, please try another."
                         break
+                    case 881:
+                        errorMessage = error?.localizedDescription ?? "Something went wrong, try again later!"
                     default:
                         break
                     }

@@ -10,6 +10,8 @@
 		5FF3DE8FB46C3D3C66C178C3 /* Pods_SCAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F27967945147C7B42D66406 /* Pods_SCAM.framework */; };
 		808998DEFCED2F6BF36D78BA /* Pods_SCAMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */; };
 		98752FBE5D8B71CA86496587 /* Pods_SCAMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */; };
+		FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */; };
+		FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27DD441E625AD800D5EBA5 /* Message.swift */; };
 		FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733BE1E59419300C4FE23 /* AppDelegate.swift */; };
 		FF4733C61E59419300C4FE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C41E59419300C4FE23 /* Main.storyboard */; };
 		FF4733C81E59419300C4FE23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4733C71E59419300C4FE23 /* Assets.xcassets */; };
@@ -20,8 +22,13 @@
 		FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */; };
 		FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733F21E595F1300C4FE23 /* IntroViewController.swift */; };
 		FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4911651E59766D00BA6960 /* LoginViewController.swift */; };
+		FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */; };
+		FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */; };
 		FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED11E5978FB00633BD5 /* Bolts.framework */; };
 		FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED21E5978FB00633BD5 /* Parse.framework */; };
+		FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDCCC701E623801005CAC26 /* ChatViewController.swift */; };
+		FFEBFA261E695D820074C5CC /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEBFA251E695D820074C5CC /* SidePanelViewController.swift */; };
+		FFEBFA281E695F270074C5CC /* SidePanelCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEBFA271E695F270074C5CC /* SidePanelCells.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +57,8 @@
 		AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCAMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30387C2B317A513CBF8C863 /* Pods-SCAMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4DBF3A86DD65B2A640F1FF6 /* Pods-SCAMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		FF27DD441E625AD800D5EBA5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FF4733BB1E59419300C4FE23 /* SCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4733BE1E59419300C4FE23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF4733C51E59419300C4FE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,8 +77,13 @@
 		FF4911651E59766D00BA6960 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF581906656CB7A32E452299 /* Pods-SCAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAM/Pods-SCAM.debug.xcconfig"; sourceTree = "<group>"; };
 		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
+		FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialProfileViewController.swift; path = ../InitialProfileViewController.swift; sourceTree = "<group>"; };
+		FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassCellTableViewCell.swift; sourceTree = "<group>"; };
 		FFDC2ED11E5978FB00633BD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
 		FFDC2ED21E5978FB00633BD5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Release-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
+		FFDCCC701E623801005CAC26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FFEBFA251E695D820074C5CC /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
+		FFEBFA271E695F270074C5CC /* SidePanelCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelCells.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +169,13 @@
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
 				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
-				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
+				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
+				FF27DD441E625AD800D5EBA5 /* Message.swift */,
+				FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */,
+				FFDCCC701E623801005CAC26 /* ChatViewController.swift */,
+				FFEBFA251E695D820074C5CC /* SidePanelViewController.swift */,
+				FF7094AC1E6B63A6002E14EB /* Cells */,
 				FF4911641E59749900BA6960 /* Login and Registration */,
 				FF4733CC1E59419300C4FE23 /* Info.plist */,
 				FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */,
@@ -185,11 +204,21 @@
 		FF4911641E59749900BA6960 /* Login and Registration */ = {
 			isa = PBXGroup;
 			children = (
+				FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */,
 				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
 				FF4911651E59766D00BA6960 /* LoginViewController.swift */,
 				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
 			);
 			name = "Login and Registration";
+			sourceTree = "<group>";
+		};
+		FF7094AC1E6B63A6002E14EB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FFEBFA271E695F270074C5CC /* SidePanelCells.swift */,
+				FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,9 +491,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFEBFA281E695F270074C5CC /* SidePanelCells.swift in Sources */,
+				FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */,
 				FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */,
+				FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */,
+				FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */,
+				FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */,
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
+				FFEBFA261E695D820074C5CC /* SidePanelViewController.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
+				FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
