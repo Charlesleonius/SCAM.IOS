@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseLiveQuery.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,10 +54,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>20E8246C623BC7D24C456B4E982AC1AF</key>
+		<key>07289F5FE975C4B249066644344B188D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1ED4DFAAD25E1999D0244868457A351E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>26149AE6E8CA1DADFFB5165C81402AC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,7 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>59CDDB315DD2B098E0CD9ED56B026F4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5AF8CB2E2645E80DA73C1D40B8B1CF5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6179F8F202501D2876F99B71364AF61A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6DC91587B32A54545FC74D22684BDD69</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8BAA0742E25D8338BD994ACFB93665FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>987C07DAF3DC8B5B37ED555E815C382E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEEB0BD8F05634F22155AE69C5504FB6</key>
+		<key>E311753036FD80CEE04C9299BB0CA8BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

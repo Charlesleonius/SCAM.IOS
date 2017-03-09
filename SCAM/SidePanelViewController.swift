@@ -89,6 +89,8 @@ class SidePanelViewController: UIViewController, UITableViewDelegate, UITableVie
         SideMenuManager.menuAnimationDismissDuration = 0.2
         switch (indexPath as NSIndexPath).row {
         case 0:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialProfileNavigationController")
+            self.present(vc!, animated: true, completion: nil)
             break
         case 1:
             break

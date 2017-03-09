@@ -1,18 +1,37 @@
 PODS:
+  - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.8.4)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
+  - ParseLiveQuery (1.1.0):
+    - Bolts-Swift (~> 1.3)
+    - Parse (~> 1.14.2)
+    - SocketRocket (~> 0.5)
   - SCLAlertView (0.7.0)
+  - SideMenu (2.1.5)
+  - SocketRocket (0.5.1)
 
 DEPENDENCIES:
+  - JSQMessagesViewController
   - Parse
+  - ParseLiveQuery
   - SCLAlertView
+  - SideMenu
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  ParseLiveQuery: 4c0f3f571ba0f358a4e592cd7d4b55c95ab9655e
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SideMenu: bcd2d7b7d4395af088e213cebd11c3ac7d958f5a
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: d16aeb3b54533ed6ad4806a30cff9afa195c3561
+PODFILE CHECKSUM: f9330bdd830ee30fcd4096aeb4a630655d76dd78
 
 COCOAPODS: 1.0.1

@@ -24,6 +24,7 @@
 		FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4911651E59766D00BA6960 /* LoginViewController.swift */; };
 		FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */; };
 		FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */; };
+		FFBDAB811E72042B009F1075 /* SCMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDAB801E72042B009F1075 /* SCMTextField.swift */; };
 		FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED11E5978FB00633BD5 /* Bolts.framework */; };
 		FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED21E5978FB00633BD5 /* Parse.framework */; };
 		FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDCCC701E623801005CAC26 /* ChatViewController.swift */; };
@@ -79,6 +80,7 @@
 		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialProfileViewController.swift; path = ../InitialProfileViewController.swift; sourceTree = "<group>"; };
 		FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassCellTableViewCell.swift; sourceTree = "<group>"; };
+		FFBDAB801E72042B009F1075 /* SCMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMTextField.swift; sourceTree = "<group>"; };
 		FFDC2ED11E5978FB00633BD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
 		FFDC2ED21E5978FB00633BD5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Release-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		FFDCCC701E623801005CAC26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */,
+				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
 				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
 				FF4911651E59766D00BA6960 /* LoginViewController.swift */,
 				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
@@ -500,6 +503,7 @@
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
 				FFEBFA261E695D820074C5CC /* SidePanelViewController.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
+				FFBDAB811E72042B009F1075 /* SCMTextField.swift in Sources */,
 				FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
 			);

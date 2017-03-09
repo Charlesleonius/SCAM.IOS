@@ -10,20 +10,24 @@ import UIKit
 
 class InitialProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var minorsTable: UITableView!
     @IBOutlet weak var classesTable: UITableView!
-    @IBOutlet weak var clubsTable: UITableView!
     
     @IBOutlet weak var majorTextField: UITextField!
     private var classes = 4
-    private var clubs = 1
+    private var minors = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        majorTextField.layer.borderWidth = 2
-        majorTextField.layer.cornerRadius = 5
-        majorTextField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
-        majorTextField.backgroundColor = UIColor.groupTableViewBackground
-        majorTextField.clipsToBounds = true
+        for subview in self.view.subviews {
+            if let textfield = subview as? UITextField  {
+                textfield.layer.borderWidth = 2
+                textfield.layer.cornerRadius = 5
+                textfield.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+                textfield.backgroundColor = UIColor.groupTableViewBackground
+                textfield.clipsToBounds = true
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -34,24 +38,24 @@ class InitialProfileViewController: UIViewController, UITableViewDelegate, UITab
         classesTable.endUpdates()
     }
     
-    @IBAction func addClub(_ sender: Any) {
-        clubs += 1
-        clubsTable.beginUpdates()
-        clubsTable.insertRows(at: [IndexPath(row: clubs - 1, section: 0)], with: .automatic)
-        clubsTable.endUpdates()
+    @IBAction func addMinor(_ sender: Any) {
+        minors += 1
+        minorsTable.beginUpdates()
+        minorsTable.insertRows(at: [IndexPath(row: minors - 1, section: 0)], with: .automatic)
+        minorsTable.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (tableView == classesTable) {
             classes -= 1
-        classesTable.beginUpdates()
+            classesTable.beginUpdates()
             classesTable.deleteRows(at: [indexPath], with: .top)
             classesTable.endUpdates()
         } else {
-            clubs -= 1
-            clubsTable.beginUpdates()
-            clubsTable.deleteRows(at: [indexPath], with: .top)
-            clubsTable.endUpdates()
+            minors -= 1
+            minorsTable.beginUpdates()
+            minorsTable.deleteRows(at: [indexPath], with: .top)
+            minorsTable.endUpdates()
         }
     }
 
@@ -60,7 +64,7 @@ class InitialProfileViewController: UIViewController, UITableViewDelegate, UITab
         if (tableView == classesTable) {
             return classes
         } else {
-            return clubs
+            return minors
         }
     }
     
@@ -74,6 +78,7 @@ class InitialProfileViewController: UIViewController, UITableViewDelegate, UITab
         cell.classNameField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         cell.classNameField.backgroundColor = UIColor.groupTableViewBackground
         cell.classNameField.clipsToBounds = true
+        cell.isExclusiveTouch = true
     
         //Update Cells
         return cell
