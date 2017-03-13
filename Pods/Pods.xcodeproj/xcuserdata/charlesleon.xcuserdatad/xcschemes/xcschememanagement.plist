@@ -14,6 +14,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DropDown.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpandingMenu-ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +45,11 @@
 			<false/>
 		</dict>
 		<key>ParseLiveQuery.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseUI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -77,12 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26149AE6E8CA1DADFFB5165C81402AC1</key>
+		<key>2450E2DA3A7E3AA277D7C7290DDC055C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4CC064FC7551BF4E34B446DC02810B94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +122,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6179F8F202501D2876F99B71364AF61A</key>
+		<key>6B35C87FE931439C7EB68CF94E2547AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,6 +137,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7270EA06BE66801463A296D34E4CB1E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8BAA0742E25D8338BD994ACFB93665FB</key>
 		<dict>
 			<key>primary</key>
@@ -122,7 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E311753036FD80CEE04C9299BB0CA8BF</key>
+		<key>9EDB241CA84062D18B45D12341F01D5B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1F78B1C5F8F2CCD0E68552EAF2B9B52</key>
 		<dict>
 			<key>primary</key>
 			<true/>

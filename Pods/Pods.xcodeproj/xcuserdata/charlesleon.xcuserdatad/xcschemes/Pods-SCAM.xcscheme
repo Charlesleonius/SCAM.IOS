@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E311753036FD80CEE04C9299BB0CA8BF"
+               BlueprintIdentifier = "4CC064FC7551BF4E34B446DC02810B94"
                BuildableName = "Pods_SCAM.framework"
                BlueprintName = "Pods-SCAM"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E311753036FD80CEE04C9299BB0CA8BF"
+            BlueprintIdentifier = "4CC064FC7551BF4E34B446DC02810B94"
             BuildableName = "Pods_SCAM.framework"
             BlueprintName = "Pods-SCAM"
             ReferencedContainer = "container:Pods.xcodeproj">
