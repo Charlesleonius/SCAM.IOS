@@ -5,10 +5,13 @@ target 'SCAM' do
   use_frameworks!
 
   pod 'Parse'
+  pod 'ParseUI'
   pod 'SCLAlertView'
   pod 'JSQMessagesViewController'
   pod 'ParseLiveQuery'
   pod 'SideMenu'
+  pod 'ExpandingMenu'
+  pod 'DropDown'
 
   target 'SCAMTests' do
     inherit! :search_paths

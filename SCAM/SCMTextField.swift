@@ -6,7 +6,7 @@
 //  Copyright © 2017 SCAM16. All rights reserved.
 //
 
-import UIKit
+import DropDown
 
 class SCMTextField: UITextField {
 
@@ -18,6 +18,10 @@ class SCMTextField: UITextField {
     }
     */
     
+    fileprivate let dropDown = DropDown()
+    fileprivate var dataSource: [String] = []
+    var enableDropDown = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.borderWidth = 2
@@ -25,6 +29,7 @@ class SCMTextField: UITextField {
         self.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         self.backgroundColor = UIColor.groupTableViewBackground
         self.layer.masksToBounds = true
+        setupDropDown()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,6 +39,62 @@ class SCMTextField: UITextField {
         self.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         self.backgroundColor = UIColor.groupTableViewBackground
         self.layer.masksToBounds = true
+        setupDropDown()
+        self.addTarget(self, action: #selector(self.search), for: .editingChanged)
+        self.addTarget(self, action: #selector(self.showDropdown), for: .editingDidBegin)
+    }
+    
+    func setDataSource(newDataSource: [String]) {
+        self.dataSource = newDataSource
+        self.dropDown.dataSource = newDataSource
+    }
+    
+    @objc func showDropdown() {
+        if (self.enableDropDown) {
+            self.dropDown.show()
+        }
+    }
+    
+    @objc func search() {
+        if (self.enableDropDown) {
+            dropDown.show()
+            dropDown.dataSource = self.dataSource
+            if (self.text != "" && self.text != nil) {
+                var newSource: [String] = []
+                for data in dropDown.dataSource {
+                    if (data.lowercased().contains(self.text!.lowercased())) {
+                        newSource.append(data)
+                    }
+                }
+                dropDown.dataSource = newSource
+            }
+        }
+    }
+    
+    func setDropDownWidth(width: CGFloat) {
+        dropDown.width = width
+    }
+    
+    fileprivate func setupDropDown() {
+        dropDown.width = self.bounds.width
+        dropDown.anchorView = self
+        dropDown.backgroundColor = UIColor.white
+        dropDown.separatorColor = UIColor.groupTableViewBackground
+        dropDown.cornerRadius = 5.0
+        dropDown.width = self.bounds.width
+        
+        // By default, the dropdown will have its origin on the top left corner of its anchor view
+        // So it will come over the anchor view and hide it completely
+        // If you want to have the dropdown underneath your anchor view, you can do this:
+        dropDown.bottomOffset = CGPoint(x: 0, y: self.bounds.height)
+        
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        dropDown.dataSource = self.dataSource
+        
+        // Action triggered on selection
+        dropDown.selectionAction = { [unowned self] (index, item) in
+            self.text = item
+        }
     }
 
 }

@@ -9,18 +9,19 @@
 import UIKit
 import Parse
 import SCLAlertView
+import ExpandingMenu
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Parse Config
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Message.registerSubclass()
+        Room.registerSubclass()
         Parse.enableLocalDatastore()
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
             ParseMutableClientConfiguration.applicationId = "scam16"
@@ -35,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         PFSession.getCurrentSessionInBackground { (session: PFSession?, error: Error?) in
             if (session != nil) {
                 let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
-                let rootView = storyboard.instantiateViewController(withIdentifier: "InitialProfileNavigationController")
+                let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
+//                let rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
                 self.window?.rootViewController = rootView
             }
         }
@@ -68,6 +69,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 }
 
+extension UIViewController {
+    func configureExpandingMenuButton() {
+        let menuButtonSize: CGSize = CGSize(width: 64.0, height: 64.0)
+        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: #imageLiteral(resourceName: "menu"), centerHighlightedImage: #imageLiteral(resourceName: "menu"))
+        
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        menuButton.center = CGPoint(x: screenWidth - 32.0, y: screenHeight - 32.0)
+        menuButton.enabledExpandingAnimations = .MenuItemMoving
+        menuButton.enabledFoldingAnimations = .MenuItemFade
+        self.view.addSubview(menuButton)
+        
+        func showAlert(_ title: String?) {
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        let item1 = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "menuButton"), highlightedImage: #imageLiteral(resourceName: "menuButton"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+            showAlert(PFUser.current()?.username)
+        }
+        
+        menuButton.addMenuItems([item1])
+        
+        menuButton.willPresentMenuItems = { (menu) -> Void in
+            
+        }
+        
+        menuButton.didDismissMenuItems = { (menu) -> Void in
+            
+        }
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+}
+
 extension UIImage {
     var rounded: UIImage? {
         let imageView = UIImageView(image: self)
@@ -94,6 +141,34 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
+}
+
+extension String {
+    
+    var length: Int {
+        return self.characters.count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[Range(i ..< i + 1)]
+    }
+    
+    func substring(from: Int) -> String {
+        return self[Range(min(from, length) ..< length)]
+    }
+    
+    func substring(to: Int) -> String {
+        return self[Range(0 ..< max(0, to))]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return self[Range(start ..< end)]
+    }
+    
 }
 
 extension UIView {

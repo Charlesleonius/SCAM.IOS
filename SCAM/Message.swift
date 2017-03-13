@@ -6,8 +6,6 @@
 //  Copyright © 2017 SCAM16. All rights reserved.
 //
 
-
-import Foundation
 import Parse
 
 class Message: PFObject, PFSubclassing {

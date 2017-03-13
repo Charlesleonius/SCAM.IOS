@@ -24,16 +24,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Style fields
-        let fields = [emailField,  passwordField, passwordConfirmationField]
-        for field in fields {
-            field?.layer.borderWidth = 1
-            field?.layer.borderColor = UIColor.lightGray.cgColor
-            field?.layer.masksToBounds = true
-            field?.autocorrectionType = .no
-        }
-        
+        self.hideKeyboardWhenTappedAround()
         //Style terms of service to make it stand out
         let termsOfServiceText = "By signing up, you agree to our Terms of Service."
         let attributedString = NSMutableAttributedString(string: "By signing up, you agree to our Terms of Service.")
@@ -63,14 +54,14 @@ class RegistrationViewController: UIViewController {
             validEmail = false
         }
         if (emailField.text == "") {
-            emailField.layer.borderColor = UIColor.lightGray.cgColor
+            emailField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         }
     }
     
     @IBAction func verifyPassword(_ sender: Any) {
         //Reset confirmation field when new password is entered
         passwordConfirmationField.text = ""
-        passwordConfirmationField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordConfirmationField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         //[a-zA-Z0-9!@#$%^&*.(+=._-] allows all the characters contained within the brackets while the {8,} creates an 8 character mininum with no maximum
         let test = NSPredicate(format:"SELF MATCHES %@", "[a-zA-Z0-9!@#$%^&*.(+=._-]{8,}")
         if(test.evaluate(with: passwordField.text)) {
@@ -81,7 +72,7 @@ class RegistrationViewController: UIViewController {
             validPassword = false
         }
         if (passwordField.text == "") {
-            passwordField.layer.borderColor = UIColor.lightGray.cgColor
+            passwordField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         }
     }
     
@@ -94,7 +85,7 @@ class RegistrationViewController: UIViewController {
             validPasswordConfirmation = false
         }
         if (passwordConfirmationField.text == "") {
-            passwordConfirmationField.layer.borderColor = UIColor.lightGray.cgColor
+            passwordConfirmationField.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         }
     }
 
@@ -122,7 +113,7 @@ class RegistrationViewController: UIViewController {
                     //                    }
                     responder.close()
                     //Show next screen
-                    let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                    let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
                     self.present(dashboard!, animated: true, completion: nil)
                 } else {
                     responder.close()
@@ -144,7 +135,15 @@ class RegistrationViewController: UIViewController {
                 }
             }
         } else {
-            SCLAlertView().showError("Ooops", subTitle: "Please check all the fields for errors. When all the fields are blue, you're good to go.")
+            if (!validEmail) {
+                emailField.shake()
+            }
+            if (!validPassword) {
+                passwordField.shake()
+            }
+            if (!validPasswordConfirmation) {
+                passwordConfirmationField.shake()
+            }
         }
     }
     

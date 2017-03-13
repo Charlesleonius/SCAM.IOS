@@ -10,6 +10,6 @@ import UIKit
 
 class AddClassCell: UITableViewCell {
 
-    @IBOutlet weak var classNameField: UITextField!
+    @IBOutlet weak var classNameField: SCMTextField!
 
 }

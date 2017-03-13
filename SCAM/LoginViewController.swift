@@ -15,9 +15,18 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func logIn(_ sender: Any) {
+        dismissKeyboard()
+        if (emailField.text == "" || passwordField.text == nil) {
+            emailField.shake()
+        }
+        if (passwordField.text == "" || passwordField.text == nil) {
+            passwordField.shake()
+            return
+        }
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         let waitingAlert = SCLAlertView(appearance: appearance)
         let responder = waitingAlert.showWait("Please Wait", subTitle: "We're trying to log you in.", closeButtonTitle: nil, duration: 0, colorStyle: 0x1461ab, colorTextButton: 0x1461ab, circleIconImage: nil, animationStyle: .topToBottom)

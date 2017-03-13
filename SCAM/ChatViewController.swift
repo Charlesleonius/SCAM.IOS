@@ -13,14 +13,17 @@ import SCLAlertView
 
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var messages = [JSQMessage]()
-    let liveQueryClient = ParseLiveQuery.Client(server: "https://scam16.herokuapp.com/parse")
-    var subscription: Subscription<Message>?
-    var errorSubscription: Subscription<Message>?
-    var createdSub: Subscription<Message>?
-    var room = "room"
+    fileprivate let liveQueryClient = ParseLiveQuery.Client(server: "https://scam16.herokuapp.com/parse")
+    fileprivate var subscription: Subscription<Message>?
+    fileprivate var errorSubscription: Subscription<Message>?
+    fileprivate var createdSub: Subscription<Message>?
+    
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    
+    var messages = [JSQMessage]()
+    var room = "room"
+    var chatRoom: Room?
     
     override func viewDidLoad() {
         self.senderDisplayName = PFUser.current()?.username
@@ -28,14 +31,14 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         register()
         observeMessages()
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.title = room
+        self.navigationController?.navigationItem.title = room
     }
     
     func register() {
         let messageQuery: PFQuery<Message>  = Message.query()!.whereKeyExists("body") as! PFQuery<Message>
-        subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in
-                
-            }.handleEvent { [weak self] (_, event) in
-                self?.handleEvent(event: event)
+        subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in }.handleEvent { [weak self] (_, event) in self?.handleEvent(event: event)
         }
     }
     
@@ -66,9 +69,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
 
     private func observeMessages() {
-        let messageQuery = PFQuery(className: "Messages")
-        messageQuery.findObjectsInBackground { (messages: [PFObject]?, error: Error?) in
-            for message in messages! as! [Message] {
+        let messageQuery = chatRoom?.messages?.query()
+        messageQuery?.addAscendingOrder("createdAt")
+        messageQuery?.findObjectsInBackground { (messages: [Message]?, error: Error?) in
+            for message in messages! {
                 let sender = message["sender"] as! PFObject
                 if let id = sender.objectId as String!, let name = message["room"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
                     self.addMessage(withId: id, name: name, text: text)
@@ -145,6 +149,13 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         message.saveInBackground { (success: Bool, error: Error?) in
             if (!success) {
                 SCLAlertView().showError("Oops", subTitle: "Your message didn't go through. Please try again later.")
+            } else {
+                let relation = self.chatRoom!.relation(forKey: "messages")
+                relation.add(message)
+                self.chatRoom!.lastMessage = message.body!
+                self.chatRoom!.saveInBackground(block: { (success: Bool, error: Error?) in
+                    print(success)
+                })
             }
         }
         
