@@ -259,6 +259,12 @@
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="5Ey-M9-2ih">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="createChat:" destination="X2i-3T-gFq" id="D2z-rB-tcK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="roomsTable" destination="96W-s8-yDl" id="KQi-6S-z7x"/>
@@ -268,23 +274,66 @@
             </objects>
             <point key="canvasLocation" x="4712.8000000000002" y="-1146.4767616191905"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="iRr-Fb-o20">
+        <!--New Chat View Controller-->
+        <scene sceneID="ods-ur-ObP">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="vaO-Wk-yez" customClass="ChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewChatViewController" id="uNy-sN-jUg" customClass="NewChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="z7r-J5-gSy"/>
-                        <viewControllerLayoutGuide type="bottom" id="uUz-7m-46Z"/>
+                        <viewControllerLayoutGuide type="top" id="l2J-ZL-EOS"/>
+                        <viewControllerLayoutGuide type="bottom" id="cFf-dF-m9F"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tzt-pq-TDT">
+                    <view key="view" contentMode="scaleToFill" id="bsb-sW-TIz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Mq-cAA">
+                                <rect key="frame" x="0.0" y="115" width="375" height="552"/>
+                                <connections>
+                                    <segue destination="Kbu-Bq-JZS" kind="embed" id="3ck-Fk-Lqh"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpe-Lf-YIt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="51"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlP-yV-nGt" customClass="MBContactPicker">
+                                <rect key="frame" x="16" y="72" width="343" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="uOf-Gp-jit"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="datasource" destination="bsb-sW-TIz" id="VER-Tw-lFX"/>
+                                    <outlet property="delegate" destination="bsb-sW-TIz" id="wLP-Yt-1sO"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="top" secondItem="l2J-ZL-EOS" secondAttribute="bottom" constant="51" id="0gU-Fq-aCS"/>
+                            <constraint firstItem="Mpe-Lf-YIt" firstAttribute="leading" secondItem="2Of-Mq-cAA" secondAttribute="leading" id="5J4-WV-QlE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Of-Mq-cAA" secondAttribute="trailing" constant="-16" id="Am7-nh-rtB"/>
+                            <constraint firstItem="VlP-yV-nGt" firstAttribute="leading" secondItem="bsb-sW-TIz" secondAttribute="leading" constant="16" id="EfZ-np-DJC"/>
+                            <constraint firstAttribute="trailing" secondItem="VlP-yV-nGt" secondAttribute="trailing" constant="16" id="MhM-ur-hhu"/>
+                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="leading" secondItem="bsb-sW-TIz" secondAttribute="leadingMargin" constant="-16" id="afT-fY-FGg"/>
+                            <constraint firstItem="VlP-yV-nGt" firstAttribute="top" secondItem="l2J-ZL-EOS" secondAttribute="bottom" constant="8" id="gJu-cB-45i"/>
+                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="top" secondItem="Mpe-Lf-YIt" secondAttribute="bottom" id="hW0-DC-YdH"/>
+                            <constraint firstItem="Mpe-Lf-YIt" firstAttribute="top" secondItem="l2J-ZL-EOS" secondAttribute="bottom" id="p4l-Lt-iZQ"/>
+                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="bottom" secondItem="cFf-dF-m9F" secondAttribute="top" id="tJt-vd-qxe"/>
+                            <constraint firstItem="Mpe-Lf-YIt" firstAttribute="trailing" secondItem="2Of-Mq-cAA" secondAttribute="trailing" id="uCe-Ht-fQ1"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="msc-7M-lsw"/>
+                    <connections>
+                        <outlet property="contactPickerView" destination="VlP-yV-nGt" id="4hU-Yl-FpG"/>
+                        <outlet property="messageView" destination="2Of-Mq-cAA" id="BA1-Pk-q3q"/>
+                        <outlet property="messageViewTopConstraint" destination="0gU-Fq-aCS" id="3wu-PS-wtU"/>
+                        <outlet property="pickerHeightConstraint" destination="uOf-Gp-jit" id="2N5-en-yUZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QS3-Su-5ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RKq-cr-lTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5756" y="-1145"/>
+            <point key="canvasLocation" x="6424.8000000000002" y="-1104.1979010494754"/>
         </scene>
         <!--SCAM-->
         <scene sceneID="AYj-JA-GPA">
@@ -853,6 +902,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fig-rM-Jbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1904.8" y="-806.44677661169419"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="TqA-Zd-0TI">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="Kbu-Bq-JZS" customClass="ChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Zu-Sm-xlg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ano-Il-L6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7367.1999999999998" y="-1101.4992503748126"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dVi-Wn-YxD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Thd-gD-g21" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TsE-3F-pMD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uNy-sN-jUg" kind="relationship" relationship="rootViewController" id="Lh2-O8-ekd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rvR-zV-HlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5485.6000000000004" y="-1104.1979010494754"/>
         </scene>
     </scenes>
     <resources>

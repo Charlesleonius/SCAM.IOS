@@ -8,12 +8,14 @@
 
 import Parse
 
-class Room: PFObject,  PFSubclassing {
+class ChatRoom: PFObject,  PFSubclassing {
     @NSManaged var title: String?
     @NSManaged var lastMessage: String?
     @NSManaged var messages: PFRelation<Message>?
+    @NSManaged var users: [PFUser]?
+    @NSManaged var contactNames: [String]?
     
     class func parseClassName() -> String {
-        return "ChatRooms"
+        return "ChatRoom"
     }
 }

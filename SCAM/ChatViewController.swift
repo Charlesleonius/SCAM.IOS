@@ -10,20 +10,21 @@ import JSQMessagesViewController
 import Parse
 import ParseLiveQuery
 import SCLAlertView
+import MBContactPicker
 
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     fileprivate let liveQueryClient = ParseLiveQuery.Client(server: "https://scam16.herokuapp.com/parse")
-    fileprivate var subscription: Subscription<Message>?
-    fileprivate var errorSubscription: Subscription<Message>?
-    fileprivate var createdSub: Subscription<Message>?
+    fileprivate var subscription: Subscription<ChatRoomObserver>?
+    fileprivate var errorSubscription: Subscription<ChatRoomObserver>?
+    fileprivate var createdSub: Subscription<ChatRoomObserver>?
     
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
     var messages = [JSQMessage]()
-    var room = "room"
-    var chatRoom: Room?
+    var messageIds: Set<String> = []
+    var chatRoom: ChatRoom? = ChatRoom()
     
     override func viewDidLoad() {
         self.senderDisplayName = PFUser.current()?.username
@@ -32,17 +33,18 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         observeMessages()
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.navigationController?.title = room
-        self.navigationController?.navigationItem.title = room
+        self.navigationController?.navigationItem.title = ""
     }
     
     func register() {
-        let messageQuery: PFQuery<Message>  = Message.query()!.whereKeyExists("body") as! PFQuery<Message>
-        subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in }.handleEvent { [weak self] (_, event) in self?.handleEvent(event: event)
+        if (self.chatRoom?.objectId != nil) {
+            let messageQuery: PFQuery<ChatRoomObserver>  = ChatRoomObserver.query()!.whereKey("roomID", equalTo: self.chatRoom!.objectId!) as! PFQuery<ChatRoomObserver>
+            subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in }.handleEvent { [weak self] (_, event) in self?.handleEvent(event: event)
+            }
         }
     }
     
-    func handleEvent(event: Event<Message>) {
+    func handleEvent(event: Event<ChatRoomObserver>) {
         // Make sure we're on main thread
         if Thread.current != Thread.main {
             return DispatchQueue.main.async { [weak self] _ in
@@ -51,31 +53,39 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         }
         
         switch event {
-        case .created(let obj), .entered(let obj):
-            let sender = obj.sender
-            if let id = sender?["objectId"] as! String!, let name = obj["room"] as! String!, let text = obj["body"] as! String!, text.characters.count > 0 {
-                // 4
-                self.addMessage(withId: id, name: name, text: text)
-                
-                // 5
-                self.finishReceivingMessage()
+            case .created(let RoomUpdate), .entered(let RoomUpdate):
+                print(RoomUpdate)
+                observeMessages()
+            case .updated(let RoomUpdate):
+                print(RoomUpdate)
+                if (RoomUpdate.userIsTyping) {
+                    self.showTypingIndicator = true
+                }
+                observeMessages()
+            case .deleted(let RoomUpdate), .left(let RoomUpdate):
+                print(RoomUpdate)
+        }
+    }
+    
+    private func addMessage(withId id: String, displayName: String, text: String, message: Message) {
+        if (!messageIds.contains(message.objectId!)) {
+            self.messageIds.insert(message.objectId!)
+            if let message = JSQMessage(senderId: id, displayName: displayName, text: text) {
+                messages.append(message)
             }
-        case .updated(let obj):
-            print(obj)
-            
-        case .deleted(let obj), .left(let obj):
-            print(obj)
         }
     }
 
     private func observeMessages() {
         let messageQuery = chatRoom?.messages?.query()
+        messageQuery?.includeKey("sender")
         messageQuery?.addAscendingOrder("createdAt")
+        messageQuery?.whereKey("objectId", notContainedIn: Array(messageIds))
         messageQuery?.findObjectsInBackground { (messages: [Message]?, error: Error?) in
             for message in messages! {
                 let sender = message["sender"] as! PFObject
-                if let id = sender.objectId as String!, let name = message["room"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
-                    self.addMessage(withId: id, name: name, text: text)
+                if let id = sender.objectId as String!, let name = message["senderDisplayName"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
+                    self.addMessage(withId: id, displayName: name, text: text, message: message)
                     self.finishReceivingMessage()
                 }
 
@@ -119,12 +129,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         }
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
@@ -138,30 +142,63 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        let message = Message()
-        message.body = text
-        message.room = "room"
-        let acl = PFACL()
-        acl.getPublicReadAccess = true
-        acl.getPublicWriteAccess = true
-        message.acl = acl
-        message["sender"] = PFUser.current()!
-        message.saveInBackground { (success: Bool, error: Error?) in
-            if (!success) {
-                SCLAlertView().showError("Oops", subTitle: "Your message didn't go through. Please try again later.")
-            } else {
-                let relation = self.chatRoom!.relation(forKey: "messages")
-                relation.add(message)
-                self.chatRoom!.lastMessage = message.body!
-                self.chatRoom!.saveInBackground(block: { (success: Bool, error: Error?) in
-                    print(success)
-                })
+        
+        func sendMessage() {
+            let message = Message()
+            message.body = text
+            message.room = self.chatRoom
+            message["sender"] = PFUser.current()!
+            message["senderDisplayName"] = PFUser.current()?["name"] as! String
+            message.saveInBackground { (success: Bool, error: Error?) in
+                if (!success) {
+                    SCLAlertView().showError("Oops", subTitle: "Your message didn't go through. Please try again later.")
+                } else {
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    self.finishSendingMessage()
+                }
             }
         }
         
-        JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
+        if (self.parent is NewChatViewController) {
+            if (messages.count == 0) {
+                let parent = self.parent as! NewChatViewController
+                parent.contactPickerView.isHidden = true
+                var contactNames: [String] = []
+                let contacts = parent.selectedContactModels(for: parent.contactPickerView) as! [ParseContactModel]
+                contactNames.append(PFUser.current()!["name"] as! String)
+                for contact in contacts {
+                    contactNames.append(contact.contactTitle)
+                    self.chatRoom?.add(contact.user!, forKey: "userPointers")
+                    self.chatRoom?.relation(forKey: "users").add(contact.user!)
+                }
+                self.chatRoom?["cotactNames"] = contactNames
+                self.chatRoom?.add(PFUser.current()!, forKey: "userPointers")
+                self.chatRoom?.relation(forKey: "users").add(PFUser.current()!)
+                var navTitle = contacts[0].contactTitle as String
+                for i in 1..<contacts.count {
+                    navTitle += ("," + contacts[i].contactTitle)
+                }
+                parent.messageViewTopConstraint.constant = 0
+                parent.view.layoutIfNeeded()
+                parent.navigationController?.navigationItem.title =  navTitle
+                let acl = PFACL()
+                acl.getPublicReadAccess = true
+                acl.getPublicWriteAccess = true
+                self.chatRoom?.acl = acl
+                self.chatRoom?.saveInBackground(block: { (success: Bool, error: Error?) in
+                    if (error == nil) {
+                        self.register()
+                        sendMessage()
+                    } else {
+                        print(error?.localizedDescription as Any)
+                    }
+                })
+                
+            }
+        } else {
+            sendMessage()
+        }
         
-        finishSendingMessage() // 5
     }
     
     override func didPressAccessoryButton(_ sender: UIButton) {

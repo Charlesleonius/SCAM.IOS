@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import SCLAlertView
 import ExpandingMenu
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        //Push Notification Registration
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.sound, .badge]) { (granted, error) in
+                if error == nil{
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        } else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .badge], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        application.registerForRemoteNotifications()
+
+        
         //Parse Config
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Message.registerSubclass()
-        Room.registerSubclass()
+        ChatRoom.registerSubclass()
+        ChatRoomObserver.registerSubclass()
         Parse.enableLocalDatastore()
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
             ParseMutableClientConfiguration.applicationId = "scam16"
@@ -35,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFSession.getCurrentSessionInBackground { (session: PFSession?, error: Error?) in
             if (session != nil) {
+                PFUser.current()?.fetchInBackground()
                 let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
 //                let rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
@@ -44,6 +62,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    //--------------------------------------
+    // Push Notifications
+    //--------------------------------------
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+        //Update installation or create new one
+        let installation = PFInstallation.current()
+        PFPush.storeDeviceToken(deviceToken)
+        if (PFUser.current() != nil) {
+            installation?["user"] = PFUser.current()!
+        }
+        installation?.setDeviceTokenFrom(deviceToken)
+        installation?.saveInBackground()
+        UserDefaults.standard.set(deviceTokenString, forKey: "deviceToken")
+        UserDefaults.standard.synchronize()
+    }
+    
+    //Not currently being used but may be at some point
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for remote notifications due to: " + error.localizedDescription)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        PFUser.current()?.fetchInBackground()
+        if let aps = userInfo["aps"] as? NSDictionary {
+            pushHandler(push: aps)
+        }
+    }
+    
+    func pushHandler(push: NSDictionary) {
+        
+    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

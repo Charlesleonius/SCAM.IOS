@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBContactPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,11 +112,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CC064FC7551BF4E34B446DC02810B94</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>59CDDB315DD2B098E0CD9ED56B026F4B</key>
 		<dict>
 			<key>primary</key>
@@ -122,7 +122,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B35C87FE931439C7EB68CF94E2547AD</key>
+		<key>5F2D8FB2645160EAD01BCEA96CAB7189</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +137,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7270EA06BE66801463A296D34E4CB1E9</key>
+		<key>8ABE262DE9EDC48109572B79F20D3F77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -158,6 +158,16 @@
 			<true/>
 		</dict>
 		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFA9BE2B9655DF25E25ED93412713ED6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD59ADE7954F35BD413A60FD6827D42B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

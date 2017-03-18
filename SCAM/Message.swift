@@ -9,11 +9,11 @@
 import Parse
 
 class Message: PFObject, PFSubclassing {
-    @NSManaged var room: String?
+    @NSManaged var room: PFObject?
     @NSManaged var body: String?
     @NSManaged var sender: PFObject?
     
     class func parseClassName() -> String {
-        return "Messages"
+        return "Message"
     }
 }

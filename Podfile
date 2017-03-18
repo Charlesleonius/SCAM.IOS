@@ -12,6 +12,7 @@ target 'SCAM' do
   pod 'SideMenu'
   pod 'ExpandingMenu'
   pod 'DropDown'
+  pod 'MBContactPicker'
 
   target 'SCAMTests' do
     inherit! :search_paths

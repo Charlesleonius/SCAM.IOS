@@ -26,11 +26,14 @@
 		FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */; };
 		FFB755711E76210200DDE3C1 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB755701E76210200DDE3C1 /* ChatRoomsViewController.swift */; };
 		FFBDAB811E72042B009F1075 /* SCMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDAB801E72042B009F1075 /* SCMTextField.swift */; };
+		FFBDF7881E777FEB00558321 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDF7871E777FEB00558321 /* NewChatViewController.swift */; };
+		FFBDF78A1E7A37C900558321 /* ChatRoomObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDF7891E7A37C900558321 /* ChatRoomObserver.swift */; };
+		FFBDF78C1E7AFBE400558321 /* ParseContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDF78B1E7AFBE400558321 /* ParseContactModel.swift */; };
 		FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED11E5978FB00633BD5 /* Bolts.framework */; };
 		FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED21E5978FB00633BD5 /* Parse.framework */; };
 		FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDCCC701E623801005CAC26 /* ChatViewController.swift */; };
 		FFE7A21A1E76367100C7CDA2 /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7A2191E76367100C7CDA2 /* ChatRoomCell.swift */; };
-		FFE7A21C1E7642BA00C7CDA2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7A21B1E7642BA00C7CDA2 /* Room.swift */; };
+		FFE7A21C1E7642BA00C7CDA2 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,13 +84,17 @@
 		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialProfileViewController.swift; path = ../InitialProfileViewController.swift; sourceTree = "<group>"; };
 		FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassCellTableViewCell.swift; sourceTree = "<group>"; };
+		FF92ABEA1E7DC21C000227CE /* SCAM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SCAM.entitlements; sourceTree = "<group>"; };
 		FFB755701E76210200DDE3C1 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		FFBDAB801E72042B009F1075 /* SCMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMTextField.swift; sourceTree = "<group>"; };
+		FFBDF7871E777FEB00558321 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
+		FFBDF7891E7A37C900558321 /* ChatRoomObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomObserver.swift; sourceTree = "<group>"; };
+		FFBDF78B1E7AFBE400558321 /* ParseContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseContactModel.swift; sourceTree = "<group>"; };
 		FFDC2ED11E5978FB00633BD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
 		FFDC2ED21E5978FB00633BD5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Release-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		FFDCCC701E623801005CAC26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		FFE7A2191E76367100C7CDA2 /* ChatRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
-		FFE7A21B1E7642BA00C7CDA2 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,15 +177,18 @@
 		FF4733BD1E59419300C4FE23 /* SCAM */ = {
 			isa = PBXGroup;
 			children = (
+				FF92ABEA1E7DC21C000227CE /* SCAM.entitlements */,
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
 				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
+				FFBDF78B1E7AFBE400558321 /* ParseContactModel.swift */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FFE7A21D1E7642E800C7CDA2 /* PFObjects */,
 				FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */,
 				FFDCCC701E623801005CAC26 /* ChatViewController.swift */,
 				FFB755701E76210200DDE3C1 /* ChatRoomsViewController.swift */,
+				FFBDF7871E777FEB00558321 /* NewChatViewController.swift */,
 				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
 				FF7094AC1E6B63A6002E14EB /* Cells */,
 				FF4911641E59749900BA6960 /* Login and Registration */,
@@ -230,7 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				FF27DD441E625AD800D5EBA5 /* Message.swift */,
-				FFE7A21B1E7642BA00C7CDA2 /* Room.swift */,
+				FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */,
+				FFBDF7891E7A37C900558321 /* ChatRoomObserver.swift */,
 			);
 			name = PFObjects;
 			sourceTree = "<group>";
@@ -314,6 +325,11 @@
 						DevelopmentTeam = 422QZQQ2SX;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					FF4733D01E59419300C4FE23 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -511,13 +527,16 @@
 				FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */,
 				FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */,
 				FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */,
-				FFE7A21C1E7642BA00C7CDA2 /* Room.swift in Sources */,
+				FFE7A21C1E7642BA00C7CDA2 /* ChatRoom.swift in Sources */,
+				FFBDF7881E777FEB00558321 /* NewChatViewController.swift in Sources */,
 				FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */,
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
+				FFBDF78C1E7AFBE400558321 /* ParseContactModel.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
 				FFBDAB811E72042B009F1075 /* SCMTextField.swift in Sources */,
 				FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,
+				FFBDF78A1E7A37C900558321 /* ChatRoomObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +689,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SCAM/SCAM.entitlements;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCAM/Info.plist;
@@ -689,6 +709,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SCAM/SCAM.entitlements;
 				DEVELOPMENT_TEAM = 422QZQQ2SX;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCAM/Info.plist;
