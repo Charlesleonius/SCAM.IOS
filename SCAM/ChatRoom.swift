@@ -11,8 +11,8 @@ import Parse
 class ChatRoom: PFObject,  PFSubclassing {
     @NSManaged var title: String?
     @NSManaged var lastMessage: String?
+    @NSManaged var observer: ChatRoomObserver?
     @NSManaged var messages: PFRelation<Message>?
-    @NSManaged var users: [PFUser]?
     @NSManaged var contactNames: [String]?
     
     class func parseClassName() -> String {

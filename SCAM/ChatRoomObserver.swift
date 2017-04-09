@@ -10,6 +10,7 @@ import Parse
 
 class ChatRoomObserver: PFObject,  PFSubclassing {
     @NSManaged var room: PFObject?
+    @NSManaged var roomID: String?
     @NSManaged var updatesAvailable: Bool
     @NSManaged var userIsTyping: Bool
     

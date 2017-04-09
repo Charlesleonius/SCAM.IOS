@@ -9,10 +9,11 @@ target 'SCAM' do
   pod 'SCLAlertView'
   pod 'JSQMessagesViewController'
   pod 'ParseLiveQuery'
-  pod 'SideMenu'
   pod 'ExpandingMenu'
   pod 'DropDown'
   pod 'MBContactPicker'
+  pod 'BEMCheckBox'
+  pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift', :branch => 'feature/swift-3'
 
   target 'SCAMTests' do
     inherit! :search_paths

@@ -1,8 +1,10 @@
 PODS:
+  - BEMCheckBox (1.4.0)
   - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.8.4)
   - DropDown (2)
   - ExpandingMenu (0.3.1)
+  - HanekeSwift (0.10.1)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -17,25 +19,37 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SCLAlertView (0.7.0)
-  - SideMenu (2.1.5)
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
+  - BEMCheckBox
   - DropDown
   - ExpandingMenu
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-3`)
   - JSQMessagesViewController
   - MBContactPicker
   - Parse
   - ParseLiveQuery
   - ParseUI
   - SCLAlertView
-  - SideMenu
+
+EXTERNAL SOURCES:
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift
+
+CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :git: https://github.com/Haneke/HanekeSwift
 
 SPEC CHECKSUMS:
+  BEMCheckBox: e18e4a148905b290bd03d98b767651c104f4eda3
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   ExpandingMenu: 107548f3cb8c04b28a8b6b436983f506849484cc
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBContactPicker: 154250dbc77eb4f57aa9b81910899a1631956677
@@ -43,9 +57,8 @@ SPEC CHECKSUMS:
   ParseLiveQuery: 4c0f3f571ba0f358a4e592cd7d4b55c95ab9655e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SideMenu: bcd2d7b7d4395af088e213cebd11c3ac7d958f5a
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 19c8124b476490ce6bef740212fe34c24584d1c7
+PODFILE CHECKSUM: 7890a4e80306640e8c432d01c41c4f8caab0ca28
 
 COCOAPODS: 1.0.1

@@ -23,7 +23,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.configureExpandingMenuButton()
         roomsTable.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name:NSNotification.Name(rawValue: "refreshRooms"), object: nil)
         refresh()
     }
     
@@ -69,14 +69,15 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.roomImage.image =
             JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: room.title?.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
         } else {
+            let currentUsername = PFUser.current()!["name"] as! String
+            var nameTitle = ""
             for name in room.contactNames! {
-                var title = ""
-                if (name != PFUser.current()!["name"] as! String) {
-                    title.append(name)
+                if (name != currentUsername) {
+                    nameTitle = name
                 }
-                cell.roomTitle.text = title
             }
-            cell.roomImage.image = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: title?.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
+            cell.roomTitle.text = nameTitle
+            cell.roomImage.image = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: cell.roomTitle.text?.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
         }
         
         cell.lastMessage.text = room.lastMessage

@@ -23,23 +23,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scamLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Kwl-TK-hPR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spartan" translatesAutoresizingMaskIntoConstraints="NO" id="Kwl-TK-hPR">
                                 <rect key="frame" x="116" y="262" width="143" height="143"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="143" id="3mJ-LV-bB2"/>
-                                    <constraint firstAttribute="width" secondItem="Kwl-TK-hPR" secondAttribute="height" multiplier="1:1" id="AZ3-LV-IbK"/>
-                                    <constraint firstAttribute="height" constant="143" id="xXH-Oz-RPZ"/>
+                                    <constraint firstAttribute="width" secondItem="Kwl-TK-hPR" secondAttribute="height" multiplier="1:1" id="KGj-1v-oq9"/>
+                                    <constraint firstAttribute="height" constant="143" id="vdC-ra-2my"/>
+                                    <constraint firstAttribute="width" constant="143" id="z9Z-4q-r28"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Kwl-TK-hPR" secondAttribute="bottom" constant="262" id="0TZ-vH-kqw"/>
-                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1O8-Ba-Ri7"/>
-                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="242" id="3lR-Jw-KYv"/>
-                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FOu-0M-ZgW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kwl-TK-hPR" secondAttribute="trailing" constant="100" id="KeJ-UO-pvR"/>
-                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="100" id="z6S-DT-QWQ"/>
+                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="100" id="7Eh-U6-nKw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kwl-TK-hPR" secondAttribute="trailing" constant="100" id="fXj-Sz-JbG"/>
+                            <constraint firstItem="Kwl-TK-hPR" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="242" id="x67-B1-k78"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -49,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="scamLogo" width="500" height="500"/>
+        <image name="spartan" width="388" height="372"/>
     </resources>
 </document>

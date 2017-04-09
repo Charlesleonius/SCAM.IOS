@@ -11,6 +11,7 @@ import Parse
 import SCLAlertView
 import ExpandingMenu
 import UserNotifications
+import Haneke
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,11 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
 
         
-        //Parse Config
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+        /******Parse Config*******/
+        
+        //Register Subclasses
         Message.registerSubclass()
         ChatRoom.registerSubclass()
         ChatRoomObserver.registerSubclass()
+        Group.registerSubclass()
+        
         Parse.enableLocalDatastore()
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
             ParseMutableClientConfiguration.applicationId = "scam16"
@@ -55,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 PFUser.current()?.fetchInBackground()
                 let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
+//                let rootView = storyboard.instantiateViewController(withIdentifier: "CreateGroupNavigationController")
 //                let rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
                 self.window?.rootViewController = rootView
             }
@@ -69,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        print(deviceTokenString)
         //Update installation or create new one
         let installation = PFInstallation.current()
         PFPush.storeDeviceToken(deviceToken)
@@ -95,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func pushHandler(push: NSDictionary) {
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshRooms"), object: nil)
     }
 
 
@@ -133,29 +137,43 @@ extension UIViewController {
         let screenHeight = screenSize.height
         
         menuButton.center = CGPoint(x: screenWidth - 32.0, y: screenHeight - 32.0)
-        menuButton.enabledExpandingAnimations = .MenuItemMoving
-        menuButton.enabledFoldingAnimations = .MenuItemFade
+        menuButton.enabledExpandingAnimations = .MenuItemBound
+        menuButton.enabledFoldingAnimations = .MenuItemBound
         self.view.addSubview(menuButton)
         
-        func showAlert(_ title: String?) {
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        /**
+        let friends = ExpandingMenuItem(size: menuButtonSize, title: "Friends", image: #imageLiteral(resourceName: "friends"), highlightedImage: #imageLiteral(resourceName: "friends"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
+            self.present(vc!, animated: true, completion: nil)
+        }
+        menuButton.addMenuItems([friends])
+        
+        let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "profile"), highlightedImage: #imageLiteral(resourceName: "profile"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
+            self.present(vc!, animated: true, completion: nil)
+        }
+        menuButton.addMenuItems([profile])
+         **/
+        
+        if (!(self is GroupsViewControllerTableViewController)) {
+            let groups = ExpandingMenuItem(size: menuButtonSize, title: "Groups", image: #imageLiteral(resourceName: "groups"), highlightedImage: #imageLiteral(resourceName: "groups"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
+                self.present(vc!, animated: true, completion: nil)
+            }
+            menuButton.addMenuItems([groups])
         }
         
-        let item1 = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "menuButton"), highlightedImage: #imageLiteral(resourceName: "menuButton"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            showAlert(PFUser.current()?.username)
+        if (!(self is ChatRoomsViewController)) {
+            let chats = ExpandingMenuItem(size: menuButtonSize, title: "Chats", image: #imageLiteral(resourceName: "chat"), highlightedImage: #imageLiteral(resourceName: "chat"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                self.present(vc!, animated: true, completion: nil)
+            }
+            menuButton.addMenuItems([chats])
         }
         
-        menuButton.addMenuItems([item1])
+        menuButton.willPresentMenuItems = { (menu) -> Void in}
         
-        menuButton.willPresentMenuItems = { (menu) -> Void in
-            
-        }
-        
-        menuButton.didDismissMenuItems = { (menu) -> Void in
-            
-        }
+        menuButton.didDismissMenuItems = { (menu) -> Void in}
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -169,7 +187,51 @@ extension UIViewController {
 
 }
 
+extension String {
+    func insert(string:String,ind:Int) -> String {
+        return  String(self.characters.prefix(ind)) + string + String(self.characters.suffix(self.characters.count-ind))
+    }
+}
+
+extension UIImageView {
+    
+    func loadFromChacheThenParse(file: PFFile, contentMode mode: UIViewContentMode = .scaleAspectFit, circular: Bool = false) {
+        var url = file.url!
+        if (!url.contains("https")) {
+            url = url.insert(string: "s", ind: 4)
+        }
+        let URL = NSURL(string: url)!
+        let cache = Shared.imageCache
+        let fetcher = NetworkFetcher<UIImage>(URL: URL as URL)
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            DispatchQueue.main.async() { () -> Void in
+                if (circular == true) {
+                    self.image = image.circle
+                } else {
+                    self.image = image
+                }
+            }
+        }
+    }
+    
+}
+
 extension UIImage {
+    
+    enum JPEGQuality: CGFloat {
+        case lowest  = 0
+        case low     = 0.25
+        case medium  = 0.5
+        case high    = 0.75
+        case highest = 1
+    }
+    
+    var pngData: Data? { return UIImagePNGRepresentation(self) }
+    
+    func jpegData(_ quality: JPEGQuality) -> Data? {
+        return UIImageJPEGRepresentation(self, quality.rawValue)
+    }
+    
     var rounded: UIImage? {
         let imageView = UIImageView(image: self)
         imageView.layer.cornerRadius = min(size.height/4, size.width/4)

@@ -14,12 +14,10 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
     
     fileprivate var contacts: [ParseContactModel] = []
     fileprivate var selectedContacts: [ParseContactModel] = []
+    
     @IBOutlet weak var messageView: UIView!
-    
     @IBOutlet weak var contactPickerView: MBContactPicker!
-    
     @IBOutlet weak var pickerHeightConstraint: NSLayoutConstraint!
-
     @IBOutlet weak var messageViewTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -43,12 +41,12 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
         }
         messageView.isHidden = true
         self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.navigationController?.navigationItem.title = "New Chat"
     }
     
     func contactCollectionView(_ contactCollectionView: MBContactCollectionView, didSelectContact model: MBContactPickerModelProtocol) {
     }
     
+    //Add
     func contactCollectionView(_ contactCollectionView: MBContactCollectionView, didAddContact model: MBContactPickerModelProtocol) {
         self.selectedContacts.append(model as! ParseContactModel)
         messageView.isHidden = (contactCollectionView.selectedContacts.count > 0) ? false : true
@@ -72,6 +70,7 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
         return self.selectedContacts
     }
     
+    //Search
     func didShowFilteredContacts(for contactPicker: MBContactPicker) {
         UIView.animate(withDuration: TimeInterval(contactPicker.animationSpeed), animations: {() -> Void in
             let pickerRectInWindow: CGRect = self.view.convert(contactPicker.frame, from: nil)

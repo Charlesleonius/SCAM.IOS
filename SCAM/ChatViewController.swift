@@ -33,13 +33,18 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         observeMessages()
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.navigationController?.navigationItem.title = ""
     }
+    
+    /**********************************************************************
+     ************** Message Sendering and Recieving Handlers **************
+     **********************************************************************/
     
     func register() {
         if (self.chatRoom?.objectId != nil) {
             let messageQuery: PFQuery<ChatRoomObserver>  = ChatRoomObserver.query()!.whereKey("roomID", equalTo: self.chatRoom!.objectId!) as! PFQuery<ChatRoomObserver>
-            subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in }.handleEvent { [weak self] (_, event) in self?.handleEvent(event: event)
+            subscription = liveQueryClient.subscribe(messageQuery).handleSubscribe { (_) in
+                }.handleEvent { [weak self] (_, event) in
+                    self?.handleEvent(event: event)
             }
         }
     }
@@ -57,13 +62,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 print(RoomUpdate)
                 observeMessages()
             case .updated(let RoomUpdate):
-                print(RoomUpdate)
-                if (RoomUpdate.userIsTyping) {
-                    self.showTypingIndicator = true
-                }
                 observeMessages()
             case .deleted(let RoomUpdate), .left(let RoomUpdate):
-                print(RoomUpdate)
+                observeMessages()
+            break
         }
     }
     
@@ -82,21 +84,118 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         messageQuery?.addAscendingOrder("createdAt")
         messageQuery?.whereKey("objectId", notContainedIn: Array(messageIds))
         messageQuery?.findObjectsInBackground { (messages: [Message]?, error: Error?) in
-            for message in messages! {
-                let sender = message["sender"] as! PFObject
-                if let id = sender.objectId as String!, let name = message["senderDisplayName"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
-                    self.addMessage(withId: id, displayName: name, text: text, message: message)
-                    self.finishReceivingMessage()
+            if (error == nil) {
+                for message in messages! {
+                    let sender = message["sender"] as! PFObject
+                    if let id = sender.objectId as String!, let name = message["senderDisplayName"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
+                        self.addMessage(withId: id, displayName: name, text: text, message: message)
+                        self.finishReceivingMessage()
+                    }
+
                 }
-
             }
-
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        
+        func sendMessage() {
+            let message = Message()
+            message.body = text
+            message["room"] = self.chatRoom!
+            message["observer"] = self.chatRoom!.observer!
+            message.sender = PFUser.current()!
+            message["senderDisplayName"] = PFUser.current()?["name"] as! String
+            message.saveInBackground { (success: Bool, error: Error?) in
+                if (error == nil) {
+                    self.chatRoom?.observer?.updatesAvailable = true
+                    self.chatRoom?.observer?.saveInBackground()
+                    self.observeMessages()
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    self.finishSendingMessage()
+                } else {
+                    SCLAlertView().showError("Oops", subTitle: "Your message didn't go through. Please try again later.")
+                }
+            }
+        }
+        
+        if (self.parent is NewChatViewController) {
+            if (messages.count == 0) {
+                let parent = self.parent as! NewChatViewController
+                parent.contactPickerView.isHidden = true
+                var contactNames: [String] = []
+                let contacts = parent.selectedContactModels(for: parent.contactPickerView) as! [ParseContactModel]
+                contactNames.append(PFUser.current()!["name"] as! String)
+                for contact in contacts {
+                    contactNames.append(contact.contactTitle)
+                    self.chatRoom?.add(contact.user!, forKey: "userPointers")
+                    self.chatRoom?.relation(forKey: "users").add(contact.user!)
+                }
+                self.chatRoom?.contactNames = contactNames
+                self.chatRoom?.add(PFUser.current()!, forKey: "userPointers")
+                self.chatRoom?.relation(forKey: "users").add(PFUser.current()!)
+                var navTitle = contacts[0].contactTitle as String
+                for i in 1..<contacts.count {
+                    navTitle += ("," + contacts[i].contactTitle)
+                }
+                parent.messageViewTopConstraint.constant = 0
+                parent.view.layoutIfNeeded()
+                parent.navigationController?.navigationItem.title =  navTitle
+                let acl = PFACL()
+                acl.getPublicReadAccess = true
+                acl.getPublicWriteAccess = true
+                self.chatRoom?.acl = acl
+                self.chatRoom!.saveInBackground(block: { (success: Bool, error: Error?) in
+                    if (error == nil) {
+                        let observer = ChatRoomObserver()
+                        let acl = PFACL()
+                        acl.getPublicReadAccess = true
+                        acl.getPublicWriteAccess = true
+                        observer.acl = acl
+                        observer.room = PFObject(withoutDataWithClassName: "ChatRoom", objectId: self.chatRoom!.objectId!)
+                        observer.roomID = self.chatRoom!.objectId!
+                        observer.saveInBackground(block: { (success: Bool, error: Error?) in
+                            if (error == nil) {
+                                self.chatRoom?.observer = observer
+                                self.chatRoom?.saveInBackground(block: { (success: Bool, error: Error?) in
+                                    if (error == nil) {
+                                        self.register()
+                                        sendMessage()
+                                    } else {
+                                        print("setting observer failed due to: " + (error?.localizedDescription)!)
+                                    }
+                                })
+                            } else {
+                                print("Observer failed to save due to: " + (error?.localizedDescription)!)
+                            }
+                        })
+                    } else {
+                        SCLAlertView().showError("Ooops", subTitle: "Failed to create chat room.")
+                    }
+                })
+                
+            }
+        } else {
+            sendMessage()
+        }
+        
     }
+    
+    override func didPressAccessoryButton(_ sender: UIButton) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+        } else {
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        }
+        
+        present(picker, animated: true, completion:nil)
+    }
+    
+    /**************************************
+     ************** UI Setup **************
+     **************************************/
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "SM", backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34)
@@ -132,7 +231,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
-        
         if message.senderId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
@@ -141,77 +239,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         return cell
     }
     
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
-        func sendMessage() {
-            let message = Message()
-            message.body = text
-            message.room = self.chatRoom
-            message["sender"] = PFUser.current()!
-            message["senderDisplayName"] = PFUser.current()?["name"] as! String
-            message.saveInBackground { (success: Bool, error: Error?) in
-                if (!success) {
-                    SCLAlertView().showError("Oops", subTitle: "Your message didn't go through. Please try again later.")
-                } else {
-                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                    self.finishSendingMessage()
-                }
-            }
-        }
-        
-        if (self.parent is NewChatViewController) {
-            if (messages.count == 0) {
-                let parent = self.parent as! NewChatViewController
-                parent.contactPickerView.isHidden = true
-                var contactNames: [String] = []
-                let contacts = parent.selectedContactModels(for: parent.contactPickerView) as! [ParseContactModel]
-                contactNames.append(PFUser.current()!["name"] as! String)
-                for contact in contacts {
-                    contactNames.append(contact.contactTitle)
-                    self.chatRoom?.add(contact.user!, forKey: "userPointers")
-                    self.chatRoom?.relation(forKey: "users").add(contact.user!)
-                }
-                self.chatRoom?["cotactNames"] = contactNames
-                self.chatRoom?.add(PFUser.current()!, forKey: "userPointers")
-                self.chatRoom?.relation(forKey: "users").add(PFUser.current()!)
-                var navTitle = contacts[0].contactTitle as String
-                for i in 1..<contacts.count {
-                    navTitle += ("," + contacts[i].contactTitle)
-                }
-                parent.messageViewTopConstraint.constant = 0
-                parent.view.layoutIfNeeded()
-                parent.navigationController?.navigationItem.title =  navTitle
-                let acl = PFACL()
-                acl.getPublicReadAccess = true
-                acl.getPublicWriteAccess = true
-                self.chatRoom?.acl = acl
-                self.chatRoom?.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if (error == nil) {
-                        self.register()
-                        sendMessage()
-                    } else {
-                        print(error?.localizedDescription as Any)
-                    }
-                })
-                
-            }
-        } else {
-            sendMessage()
-        }
-        
-    }
-    
-    override func didPressAccessoryButton(_ sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-            picker.sourceType = UIImagePickerControllerSourceType.camera
-        } else {
-            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        }
-        
-        present(picker, animated: true, completion:nil)
-    }
     
     @IBAction func closeView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

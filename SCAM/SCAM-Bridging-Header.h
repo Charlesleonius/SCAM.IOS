@@ -4,3 +4,4 @@
 #import <Parse/Parse.h>
 #import <JSQMessagesViewController/JSQMessagesCollectionView.h>
 #import <MBContactPicker/MBContactPicker.h>
+#import <BEMCheckBox/BEMCheckBox.h>
