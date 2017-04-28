@@ -61,9 +61,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             case .created(let RoomUpdate), .entered(let RoomUpdate):
                 print(RoomUpdate)
                 observeMessages()
-            case .updated(let RoomUpdate):
+            case .updated(let _):
                 observeMessages()
-            case .deleted(let RoomUpdate), .left(let RoomUpdate):
+            case .deleted(let _), .left(let _):
                 observeMessages()
             break
         }

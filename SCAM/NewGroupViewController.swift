@@ -19,6 +19,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
     fileprivate var contacts: [ParseContactModel] = []
     fileprivate var selectedContacts: [ParseContactModel] = []
     fileprivate var privacyGroup: BEMCheckBoxGroup?
+    fileprivate var pickedImage: UIImage?
     
     @IBOutlet weak var pickerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var groupImageView: UIImageView!
@@ -31,7 +32,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         //Setup image view
         groupImageView.layer.borderWidth = 1.0
@@ -78,8 +79,8 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         let group = Group()
         group.isPrivate = (privacyGroup?.selectedCheckBox == privateCheckBox) ? true : false
         group.title = groupTitleField.text
-        if (groupImageView.image != #imageLiteral(resourceName: "camera")) {
-            group.image = PFFile(data: (groupImageView.image?.jpegData(.low))!)
+        if (self.pickedImage != nil) {
+            group.image = PFFile(data: (pickedImage?.jpegData(.low))!)
         }
         for contact in self.selectedContacts {
             group.users?.append(contact.user as! PFUser)
@@ -204,6 +205,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil);
         let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.pickedImage = pickedImage
         self.groupImageView.image = pickedImage.circle
         picker.dismiss(animated: true, completion: nil)
     }

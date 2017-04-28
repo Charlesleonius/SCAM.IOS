@@ -1,24 +1,21 @@
 //
-//  GroupCell.swift
+//  GroupCollectionCell.swift
 //  SCAM
 //
-//  Created by Charles Leon on 4/8/17.
+//  Created by Charles Leon on 4/27/17.
 //  Copyright © 2017 SCAM16. All rights reserved.
 //
 
-import UIKit
+import Parse
 
-class GroupCell: UITableViewCell {
-
+class GroupCollectionCell: UICollectionViewCell {
+    
+    var group: Group?
+    
     @IBOutlet weak var groupImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var memberCountLabel: UILabel!
     @IBOutlet weak var friendsInGroupLabel: UILabel!
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 
 }

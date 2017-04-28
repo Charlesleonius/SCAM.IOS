@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
 //                let rootView = storyboard.instantiateViewController(withIdentifier: "CreateGroupNavigationController")
 //                let rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+                self.window?.rootViewController?.dismissKeyboard()
                 self.window?.rootViewController = rootView
             }
         }
@@ -155,7 +156,7 @@ extension UIViewController {
         menuButton.addMenuItems([profile])
          **/
         
-        if (!(self is GroupsViewControllerTableViewController)) {
+        if (!(self is GroupsCollectionViewController)) {
             let groups = ExpandingMenuItem(size: menuButtonSize, title: "Groups", image: #imageLiteral(resourceName: "groups"), highlightedImage: #imageLiteral(resourceName: "groups"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
                 self.present(vc!, animated: true, completion: nil)
