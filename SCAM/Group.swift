@@ -11,6 +11,8 @@ import Parse
 class Group: PFObject, PFSubclassing {
     @NSManaged var isPrivate: Bool
     @NSManaged var title: String?
+    @NSManaged var profiles: [PFObject]?
+    @NSManaged var profilePointers: [PFObject]?
     @NSManaged var users: [PFUser]?
     @NSManaged var userPointers: [PFObject]?
     @NSManaged var image: PFFile?

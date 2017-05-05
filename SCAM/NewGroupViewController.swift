@@ -48,14 +48,14 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         contactPicker.prompt = "Members:"
         
         do {
-            let query = PFUser.query()
-            let users = try query?.whereKey("objectId", notEqualTo: PFUser.current()!.objectId!).findObjects()
-            for user in users! {
+            let query = Profile.query()
+            let profiles = try query?.whereKey("objectId", notEqualTo: (PFUser.currentProfile()?.objectId)!).findObjects()
+            for profile in profiles as! [Profile] {
                 let model = ParseContactModel()
-                model.contactTitle = user["name"] as! String
+                model.contactTitle = profile.name
                 model.contactSubtitle = "..."
                 model.contactImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: model.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
-                model.user = user
+                model.profile = profile
                 self.contacts.append(model)
             }
         } catch {
@@ -83,22 +83,23 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
             group.image = PFFile(data: (pickedImage?.jpegData(.low))!)
         }
         for contact in self.selectedContacts {
-            group.users?.append(contact.user as! PFUser)
-            group.add(contact.user!, forKey: "userPointers")
-            group.relation(forKey: "users").add(contact.user as! PFUser)
+            let pointer = PFObject(withoutDataWithClassName: "Profile", objectId: contact.profile?.objectId)
+            group.add(pointer, forKey: "profilePointers")
+            group.relation(forKey: "profiles").add(contact.profile!)
         }
-        group.add(PFUser.current()!, forKey: "userPointers")
-        group.relation(forKey: "users").add(PFUser.current()!)
-
+        group.relation(forKey: "profiles").add((PFUser.current() as! User).profile!)
         group.saveInBackground { (success: Bool, error: Error?) in
             if (error == nil) {
                 self.dismiss(animated: true, completion: nil)
             } else {
-                print(error?.localizedDescription)
                 SCLAlertView().showError("Ooops", subTitle: "Something went wrong creating your group, please try again later.")
             }
         }
     }
+    
+    /************************
+     ***** Contact Picker ***
+     ************************/
     
     func customFilterPredicate(_ searchString: String!) -> NSPredicate! {
         if (searchString == " ") {
@@ -162,6 +163,10 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         })
     }
     
+    /********************
+     ***** Table View ***
+     ********************/
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
@@ -191,6 +196,10 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         cell?.checkBox.on = true
     }
     
+    /**********************
+     ***** Image Picker ***
+     **********************/
+    
     @IBAction func changeProfilePicture(_ sender: Any)
     {
         let pickerC = UIImagePickerController()
@@ -213,7 +222,6 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
 
     @IBAction func closeView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

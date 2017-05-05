@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ChatRoom.registerSubclass()
         ChatRoomObserver.registerSubclass()
         Group.registerSubclass()
+        Post.registerSubclass()
         
         Parse.enableLocalDatastore()
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
@@ -149,12 +150,14 @@ extension UIViewController {
         }
         menuButton.addMenuItems([friends])
         
-        let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "profile"), highlightedImage: #imageLiteral(resourceName: "profile"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
-            self.present(vc!, animated: true, completion: nil)
-        }
-        menuButton.addMenuItems([profile])
          **/
+        if (!(self is ProfileTableViewController)) {
+            let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "profileMenuButton"), highlightedImage: #imageLiteral(resourceName: "profileMenuButton"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewNavigationController")
+                self.present(vc!, animated: true, completion: nil)
+            }
+            menuButton.addMenuItems([profile])
+        }
         
         if (!(self is GroupsCollectionViewController)) {
             let groups = ExpandingMenuItem(size: menuButtonSize, title: "Groups", image: #imageLiteral(resourceName: "groups"), highlightedImage: #imageLiteral(resourceName: "groups"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
@@ -298,3 +301,18 @@ extension UIView {
     }
 }
 
+extension PFUser {
+    static func currentProfile() -> Profile? {
+        if (PFUser.current() != nil) {
+            let user = PFUser.current() as! User
+            return user.profile as? Profile
+        }
+        return nil
+    }
+    static func currentUserSubclass() -> User? {
+        if (PFUser.current() != nil) {
+            return PFUser.current() as? User
+        }
+        return nil
+    }
+}

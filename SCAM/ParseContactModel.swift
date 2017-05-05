@@ -10,5 +10,5 @@ import Parse
 import MBContactPicker
 
 class ParseContactModel: MBContactModel {
-    var user: PFObject?
+    var profile: Profile?
 }

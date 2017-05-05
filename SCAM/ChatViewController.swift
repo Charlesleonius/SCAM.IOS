@@ -128,8 +128,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 contactNames.append(PFUser.current()!["name"] as! String)
                 for contact in contacts {
                     contactNames.append(contact.contactTitle)
-                    self.chatRoom?.add(contact.user!, forKey: "userPointers")
-                    self.chatRoom?.relation(forKey: "users").add(contact.user!)
+                    self.chatRoom?.add(contact.profile!, forKey: "profilePointers")
+                    self.chatRoom?.relation(forKey: "profiles").add(contact.profile!)
                 }
                 self.chatRoom?.contactNames = contactNames
                 self.chatRoom?.add(PFUser.current()!, forKey: "userPointers")

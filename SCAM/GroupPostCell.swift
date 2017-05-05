@@ -10,8 +10,12 @@ import UIKit
 
 class GroupPostCell: UITableViewCell {
 
-    @IBOutlet weak var bodyLabel: UILabel!
     
+    @IBOutlet weak var bodyImageView: UIImageView!
+    @IBOutlet weak var creationDateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var postImageViewHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {

@@ -20,15 +20,14 @@ class GroupsCollectionViewController: UICollectionViewController, UICollectionVi
     
 
     @IBOutlet weak var privacySelector: UISegmentedControl!
-    @IBOutlet weak var groupTableView: UITableView!
     
     @IBAction func changePrivacy(_ sender: Any) {
-        groupTableView.reloadData()
+        self.collectionView?.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refresh()
         
@@ -78,7 +77,9 @@ class GroupsCollectionViewController: UICollectionViewController, UICollectionVi
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+        if (privacySelector.selectedSegmentIndex == 1) {
+            return privateGroups.count
+        }
         return publicGroups.count
     }
     
@@ -87,7 +88,15 @@ class GroupsCollectionViewController: UICollectionViewController, UICollectionVi
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
         
+        
+        cell.groupImageView.image = #imageLiteral(resourceName: "spartan")
+        
         var group = self.publicGroups[indexPath.row]
+        
+        if (privacySelector.selectedSegmentIndex == 1) {
+            group = self.privateGroups[indexPath.row]
+        }
+        
         cell.group = group
         
         if (indexPath.section == 1) {
@@ -98,7 +107,7 @@ class GroupsCollectionViewController: UICollectionViewController, UICollectionVi
         }
         cell.titleLabel.text = group.title
         cell.memberCountLabel.text = (group.userPointers?.count.description ?? "-") + " Members"
-        //cell.friendsInGroupLabel.text = ""
+        
         return cell
     }
     

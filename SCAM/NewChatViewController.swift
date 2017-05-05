@@ -25,15 +25,26 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
         self.contactPickerView.delegate = self;
         self.contactPickerView.datasource = self;
         contactPickerView.prompt = "To:"
-        let query = PFUser.query()
+        let query = Profile.query()
         do {
-            let users = try query?.whereKey("objectId", notEqualTo: PFUser.current()!.objectId!).findObjects()
-            for user in users! {
+            let profile = (PFUser.current() as! User).profile
+            let profiles = try query?.whereKey("user", notEqualTo: PFUser.current()).findObjects()
+            for profile in profiles as! [Profile] {
                 let model = ParseContactModel()
-                model.contactTitle = user["name"] as! String
-                model.contactSubtitle = "..."
-                model.contactImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: model.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
-                model.user = user
+                model.profile = profile
+                model.contactTitle = profile.name
+                model.contactSubtitle = profile.username!
+                if (profile.profileImage == nil) {
+                    model.contactImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: model.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
+                } else {
+                    do {
+                        let data = try profile.profileImage?.getData()
+                        if (data != nil) {
+                            let image = UIImage(data: data!)
+                            model.contactImage = image?.circle
+                        }
+                    } catch {}
+                }
                 self.contacts.append(model)
             }
         } catch {
