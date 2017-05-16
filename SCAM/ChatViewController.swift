@@ -22,7 +22,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
-    var messages = [JSQMessage]()
+    var profiles = [Profile]()
+    var messages = [JSQPFMessage]()
     var messageIds: Set<String> = []
     var chatRoom: ChatRoom? = ChatRoom()
     
@@ -32,7 +33,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         register()
         observeMessages()
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
     
@@ -73,8 +73,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     private func addMessage(withId id: String, displayName: String, text: String, message: Message) {
         if (!messageIds.contains(message.objectId!)) {
             self.messageIds.insert(message.objectId!)
-            if let message = JSQMessage(senderId: id, displayName: displayName, text: text) {
-                messages.append(message)
+            if let jsqMessage = JSQPFMessage(senderId: id, displayName: displayName, text: text) {
+                jsqMessage.senderProfile = message.senderProfile
+                messages.append(jsqMessage)
             }
         }
     }
@@ -83,6 +84,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         let messageQuery = Message.query()
         messageQuery?.whereKey("room", equalTo: self.chatRoom)
         messageQuery?.includeKey("sender")
+        messageQuery?.includeKey("senderProfile")
         messageQuery?.addAscendingOrder("createdAt")
         messageQuery?.whereKey("objectId", notContainedIn: Array(messageIds))
         messageQuery?.findObjectsInBackground { (pfMessages: [PFObject]?, error: Error?) in
@@ -106,7 +108,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             message.body = text
             message["room"] = self.chatRoom!
             message["observer"] = self.chatRoom!.observer!
-            message.sender = PFUser.current()!
             message["senderDisplayName"] = PFUser.current()?["name"] as! String
             message.saveInBackground { (success: Bool, error: Error?) in
                 if (error == nil) {
@@ -199,8 +200,16 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
      ************** UI Setup **************
      **************************************/
     
+    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "SM", backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34)
+        let message = messages[indexPath.row]
+        do {
+            if (message.senderProfile?.profileImage != nil) {
+                let data = try message.senderProfile?.profileImage!.getData()
+                return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(data: data!), diameter: 34)
+            }
+        } catch {}
+        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: (message.senderDisplayName).substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34)
     }
 
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -238,6 +247,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         } else {
             cell.textView?.textColor = UIColor.black
         }
+        cell.isExclusiveTouch = true
         return cell
     }
     

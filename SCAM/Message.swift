@@ -12,6 +12,7 @@ class Message: PFObject, PFSubclassing {
     @NSManaged var room: PFObject?
     @NSManaged var body: String?
     @NSManaged var sender: PFObject?
+    @NSManaged var senderProfile: Profile?
     @NSManaged var observer: PFObject?
     
     class func parseClassName() -> String {

@@ -14,6 +14,7 @@
 		FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */; };
 		FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27DD441E625AD800D5EBA5 /* Message.swift */; };
 		FF2BC8121EC9121D0063940E /* GroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */; };
+		FF2BC8141ECAC1730063940E /* JSQPFMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */; };
 		FF41B84D1EB33F39002E8857 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF41B84C1EB33F39002E8857 /* Post.swift */; };
 		FF41B84F1EB43924002E8857 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF41B84E1EB43924002E8857 /* NewPostViewController.swift */; };
 		FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733BE1E59419300C4FE23 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FF27DD441E625AD800D5EBA5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMemberCell.swift; path = ../GroupMemberCell.swift; sourceTree = "<group>"; };
+		FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPFMessage.swift; sourceTree = "<group>"; };
 		FF41B84C1EB33F39002E8857 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FF41B84E1EB43924002E8857 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewPostViewController.swift; path = SCAM/NewPostViewController.swift; sourceTree = "<group>"; };
 		FF4733BB1E59419300C4FE23 /* SCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -312,6 +314,7 @@
 				FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */,
 				FFBDF7891E7A37C900558321 /* ChatRoomObserver.swift */,
 				FFBDF78B1E7AFBE400558321 /* ParseContactModel.swift */,
+				FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */,
 			);
 			name = PFObjects;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				FFC5C4121EB4670B00F7279D /* Profile.swift in Sources */,
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
 				FFBDF78C1E7AFBE400558321 /* ParseContactModel.swift in Sources */,
+				FF2BC8141ECAC1730063940E /* JSQPFMessage.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
 				FFC5C4161EB5131F00F7279D /* GroupMembersViewController.swift in Sources */,
 				FF8BECBC1E8652D000ED0A95 /* GroupsCollectionViewController.swift in Sources */,
