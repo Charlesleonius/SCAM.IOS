@@ -55,16 +55,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultACL = PFACL();
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
         
-        PFSession.getCurrentSessionInBackground { (session: PFSession?, error: Error?) in
-            if (session != nil) {
-                PFUser.current()?.fetchInBackground()
-                let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
-//                let rootView = storyboard.instantiateViewController(withIdentifier: "CreateGroupNavigationController")
-//                let rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
-                self.window?.rootViewController?.dismissKeyboard()
-                self.window?.rootViewController = rootView
+        if (PFUser.current() != nil) {
+            PFSession.getCurrentSessionInBackground { (session: PFSession?, error: Error?) in
+                if (session == nil) {
+                    PFUser.logOut()
+                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let rootView = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
+                    self.window?.rootViewController?.dismissKeyboard()
+                    self.window?.rootViewController = rootView
+                }
             }
+            let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
+            self.window?.rootViewController?.dismissKeyboard()
+            self.window?.rootViewController = rootView
+            UIApplication.shared.statusBarStyle = .lightContent
         }
         
         return true
@@ -132,13 +137,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIViewController {
     func configureExpandingMenuButton() {
         let menuButtonSize: CGSize = CGSize(width: 64.0, height: 64.0)
-        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: #imageLiteral(resourceName: "menu"), centerHighlightedImage: #imageLiteral(resourceName: "menu"))
+        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: #imageLiteral(resourceName: "menuButtonCircular"), centerHighlightedImage: #imageLiteral(resourceName: "menuButtonCircular"))
         
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
-        menuButton.center = CGPoint(x: screenWidth - 32.0, y: screenHeight - 32.0)
+        menuButton.center = CGPoint(x: screenWidth - 35.0, y: screenHeight - 35.0)
         menuButton.enabledExpandingAnimations = .MenuItemBound
         menuButton.enabledFoldingAnimations = .MenuItemBound
         self.view.addSubview(menuButton)
@@ -198,7 +203,6 @@ extension String {
 }
 
 extension UIImageView {
-    
     func loadFromChacheThenParse(file: PFFile, contentMode mode: UIViewContentMode = .scaleAspectFit, circular: Bool = false) {
         var url = file.url!
         if (!url.contains("https")) {

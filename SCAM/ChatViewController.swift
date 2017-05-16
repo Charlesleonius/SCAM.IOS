@@ -32,6 +32,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         register()
         observeMessages()
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
     
@@ -79,19 +80,20 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
 
     private func observeMessages() {
-        let messageQuery = chatRoom?.messages?.query()
+        let messageQuery = Message.query()
+        messageQuery?.whereKey("room", equalTo: self.chatRoom)
         messageQuery?.includeKey("sender")
         messageQuery?.addAscendingOrder("createdAt")
         messageQuery?.whereKey("objectId", notContainedIn: Array(messageIds))
-        messageQuery?.findObjectsInBackground { (messages: [Message]?, error: Error?) in
-            if (error == nil) {
-                for message in messages! {
+        messageQuery?.findObjectsInBackground { (pfMessages: [PFObject]?, error: Error?) in
+            if (error == nil  && pfMessages != nil) {
+                for pfMessage in pfMessages! {
+                    let message = pfMessage as! Message
                     let sender = message["sender"] as! PFObject
                     if let id = sender.objectId as String!, let name = message["senderDisplayName"] as! String!, let text = message["body"] as! String!, text.characters.count > 0 {
                         self.addMessage(withId: id, displayName: name, text: text, message: message)
                         self.finishReceivingMessage()
                     }
-
                 }
             }
         }

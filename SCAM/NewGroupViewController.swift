@@ -90,7 +90,10 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         group.relation(forKey: "profiles").add((PFUser.current() as! User).profile!)
         group.saveInBackground { (success: Bool, error: Error?) in
             if (error == nil) {
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupPageTableViewController") as! GroupPageTableViewController
+                vc.group = group
+                self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 SCLAlertView().showError("Ooops", subTitle: "Something went wrong creating your group, please try again later.")
             }
@@ -180,6 +183,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         cell.profileImage.image = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: contact.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
         cell.username.text = contact.contactTitle
         
+        cell.checkBox.isUserInteractionEnabled = false
         if (self.selectedContacts.contains(cell.contact!)) {
             cell.checkBox.on = true
         } else {

@@ -25,34 +25,51 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
         self.contactPickerView.delegate = self;
         self.contactPickerView.datasource = self;
         contactPickerView.prompt = "To:"
-        let query = Profile.query()
-        do {
-            let profile = (PFUser.current() as! User).profile
-            let profiles = try query?.whereKey("user", notEqualTo: PFUser.current()).findObjects()
-            for profile in profiles as! [Profile] {
-                let model = ParseContactModel()
-                model.profile = profile
-                model.contactTitle = profile.name
-                model.contactSubtitle = profile.username!
-                if (profile.profileImage == nil) {
-                    model.contactImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: model.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
-                } else {
-                    do {
-                        let data = try profile.profileImage?.getData()
-                        if (data != nil) {
-                            let image = UIImage(data: data!)
-                            model.contactImage = image?.circle
-                        }
-                    } catch {}
-                }
-                self.contacts.append(model)
-            }
-        } catch {
-            
-        }
         messageView.isHidden = true
         self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.hideKeyboardWhenTappedAround()
+        self.loadObjects()
     }
+    
+    @objc
+    func objectsDidLoad(profiles: [Profile]) {
+        for profile in profiles {
+            let model = ParseContactModel()
+            model.profile = profile
+            model.contactTitle = profile.name
+            model.contactSubtitle = profile.username!
+            if (profile.profileImage == nil) {
+                model.contactImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: model.contactTitle.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
+            } else {
+                profile.profileImage?.getDataInBackground({ (data: Data?, error: Error?) in
+                    if (error == nil) {
+                        let image = UIImage(data: data!)
+                        model.contactImage = image?.circle
+                        
+                    }
+                    self.contacts.append(model)
+                }, progressBlock: nil)
+            }
+            self.contacts.append(model)
+            self.contactPickerView.reloadData()
+        }
+    }
+    
+    @objc
+    func loadObjects() {
+        let query = Profile.query()
+        query?.whereKey("user", notEqualTo: PFUser.current()!).findObjectsInBackground(block: { (profiles:[PFObject]?, error: Error?) in
+            if (error == nil) {
+                self.objectsDidLoad(profiles: profiles as! [Profile])
+            } else {
+                print(error?.localizedDescription ?? "")
+            }
+        })
+    }
+    
+    /********************************/
+    /********* Contact Picker *******/
+    /********************************/
     
     func contactCollectionView(_ contactCollectionView: MBContactCollectionView, didSelectContact model: MBContactPickerModelProtocol) {
     }

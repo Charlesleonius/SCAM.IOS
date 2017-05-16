@@ -8,6 +8,7 @@
 
 import Parse
 import SCLAlertView
+import DropdownMenu
 
 class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -26,7 +27,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         setup()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.changeProfilePicture(_:)))
         self.profileImageView.addGestureRecognizer(tap)
-        
     }
 
     func setup() {
@@ -81,6 +81,27 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         return cell
     }
     */
+    
+    @IBAction func logout(_ sender: Any) {
+        let logoutSheet: UIAlertController = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        }
+        let logoutActionButton: UIAlertAction = UIAlertAction(title: "Logout", style: .destructive) { action -> Void in
+            PFCloud.callFunction(inBackground: "unsetInstallations", withParameters: [:])
+            PFUser.logOut()
+            let appDelegate  = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window!.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "IntroViewController")
+            self.dismiss(animated: true) {
+                appDelegate.window?.makeKeyAndVisible()
+            }
+        }
+        logoutSheet.addAction(cancelActionButton)
+        logoutSheet.addAction(logoutActionButton)
+        self.present(logoutSheet, animated: true, completion: nil)
+
+    }
+    
 
     
     @IBAction func changeProfilePicture(_ sender: Any)

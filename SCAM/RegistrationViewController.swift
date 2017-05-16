@@ -121,7 +121,7 @@ class RegistrationViewController: UIViewController {
                     var errorMessage = "Something went wrong, try again later!"
                     switch error!._code {
                     case 203:
-                        errorMessage = "This email is already is use, please try another."
+                        errorMessage = "This email is already in use, please try another."
                         break
                     case 202:
                         errorMessage = "This email is already in use, please try another."

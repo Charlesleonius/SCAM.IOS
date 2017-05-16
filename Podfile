@@ -11,6 +11,7 @@ target 'SCAM' do
   pod 'ParseLiveQuery'
   pod 'ExpandingMenu'
   pod 'DropDown'
+  pod 'DropdownMenu'
   pod 'MBContactPicker'
   pod 'BEMCheckBox'
   pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift', :branch => 'feature/swift-3'

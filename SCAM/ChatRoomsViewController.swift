@@ -66,8 +66,6 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
         let room = rooms[indexPath.row]
         if (room.title != nil) {
             cell.roomTitle.text = room.title
-            cell.roomImage.image =
-            JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: room.title?.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
         } else {
             let currentUsername = PFUser.current()!["name"] as! String
             var nameTitle = ""
@@ -77,7 +75,33 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             cell.roomTitle.text = nameTitle
-            cell.roomImage.image = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: cell.roomTitle.text?.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
+        }
+        
+        func setImage(string: String) {
+            cell.roomImage?.image =
+                JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: string.substring(to: 1), backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.gray, font: UIFont.systemFont(ofSize: 15.0), diameter: 34).avatarImage
+        }
+        
+        if (room.title != nil) {
+            setImage(string: room.title!)
+        } else {
+            setImage(string: "SCAM")
+        }
+        if (room.profilePointers?.count == 1) {
+            for profile in room.profilePointers! {
+                if (profile.objectId != PFUser.currentProfile()?.objectId) {
+                    profile.fetchInBackground(block: { (updatedProfile: PFObject?, error: Error?) in
+                        if (error == nil) {
+                            let updatedProfile = updatedProfile as! Profile
+                            if (updatedProfile.profileImage != nil) {
+                                cell.roomImage?.loadFromChacheThenParse(file: profile.profileImage!, contentMode: .scaleAspectFit, circular: true)
+                            } else {
+                                setImage(string: updatedProfile.name!)
+                            }
+                        }
+                    })
+                }
+            }
         }
         
         cell.lastMessage.text = room.lastMessage

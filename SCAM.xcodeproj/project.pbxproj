@@ -13,6 +13,7 @@
 		FF0F99C81E98D36A005B928F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F99C71E98D36A005B928F /* Group.swift */; };
 		FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */; };
 		FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27DD441E625AD800D5EBA5 /* Message.swift */; };
+		FF2BC8121EC9121D0063940E /* GroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */; };
 		FF41B84D1EB33F39002E8857 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF41B84C1EB33F39002E8857 /* Post.swift */; };
 		FF41B84F1EB43924002E8857 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF41B84E1EB43924002E8857 /* NewPostViewController.swift */; };
 		FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4733BE1E59419300C4FE23 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		FF0F99C71E98D36A005B928F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FF27DD441E625AD800D5EBA5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMemberCell.swift; path = ../GroupMemberCell.swift; sourceTree = "<group>"; };
 		FF41B84C1EB33F39002E8857 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FF41B84E1EB43924002E8857 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewPostViewController.swift; path = SCAM/NewPostViewController.swift; sourceTree = "<group>"; };
 		FF4733BB1E59419300C4FE23 /* SCAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,9 +188,9 @@
 				FF4733BD1E59419300C4FE23 /* SCAM */,
 				FF4733D41E59419300C4FE23 /* SCAMTests */,
 				FF4733DF1E59419300C4FE23 /* SCAMUITests */,
+				34EE44FD87D269AD5EA77B76 /* Frameworks */,
 				FF4733BC1E59419300C4FE23 /* Products */,
 				8A0DEC8B2844ACA38ED1B00F /* Pods */,
-				34EE44FD87D269AD5EA77B76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -257,6 +259,7 @@
 		FF7094AC1E6B63A6002E14EB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */,
 				FF81784F1EB2EF0600833E8D /* GroupPostCell.swift */,
 				FF81784B1EB2AB6800833E8D /* GroupCollectionCell.swift */,
 				FF5E513A1E9782EF00FB9F5B /* FriendSelectionCell.swift */,
@@ -590,6 +593,7 @@
 			files = (
 				FFC5C40E1EB4425A00F7279D /* User.swift in Sources */,
 				FF81784C1EB2AB6800833E8D /* GroupCollectionCell.swift in Sources */,
+				FF2BC8121EC9121D0063940E /* GroupMemberCell.swift in Sources */,
 				FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */,
 				FFE7A21A1E76367100C7CDA2 /* ChatRoomCell.swift in Sources */,
 				FF41B84D1EB33F39002E8857 /* Post.swift in Sources */,

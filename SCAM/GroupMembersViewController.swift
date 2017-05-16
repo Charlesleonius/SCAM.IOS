@@ -18,6 +18,16 @@ class GroupMembersViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadObjects()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMember))
+    }
+    
+    @objc
+    func addMember() {
+        print("adding")
+    }
+    
+    @IBAction func removeMember(_ sender: UIButton) {
+        print(sender.tag)
     }
     
     @objc
@@ -53,14 +63,23 @@ class GroupMembersViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendSelectionCell", for: indexPath) as! FriendSelectionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupMemberCell", for: indexPath) as! GroupMemberCell
         
         let profile = profiles[indexPath.row]
-        cell.username.text = profile.name
+        cell.usernameLabel.text = profile.name
         if (profile.profileImage != nil) {
-            cell.profileImage.loadFromChacheThenParse(file: profile.profileImage!, contentMode: .scaleAspectFit, circular: true)
+            cell.profileImageView.loadFromChacheThenParse(file: profile.profileImage!, contentMode: .scaleAspectFit, circular: true)
+        } else {
+            cell.profileImageView.image = #imageLiteral(resourceName: "defaultAvatar")
         }
-        cell.checkBox.on = true
+        
+        cell.actionButton.tag = indexPath.row
+        if (group!.acl!.getWriteAccess(for: PFUser.current()!)) {
+            cell.actionButton.isHidden = false
+            cell.actionButton.addTarget(self, action: #selector(self.removeMember(_:)), for: .allEvents)
+        } else {
+            cell.actionButton.isHidden = true
+        }
         
         return cell
     }

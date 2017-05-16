@@ -14,6 +14,8 @@ class ChatRoom: PFObject,  PFSubclassing {
     @NSManaged var observer: ChatRoomObserver?
     @NSManaged var messages: PFRelation<Message>?
     @NSManaged var contactNames: [String]?
+    @NSManaged var userPointers: [PFObject]?
+    @NSManaged var profilePointers: [Profile]?
     
     class func parseClassName() -> String {
         return "ChatRoom"
