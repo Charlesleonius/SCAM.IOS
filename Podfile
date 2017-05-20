@@ -15,6 +15,7 @@ target 'SCAM' do
   pod 'MBContactPicker'
   pod 'BEMCheckBox'
   pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift', :branch => 'feature/swift-3'
+  pod 'IQKeyboardManagerSwift'
 
   target 'SCAMTests' do
     inherit! :search_paths

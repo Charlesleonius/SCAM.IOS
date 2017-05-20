@@ -38,6 +38,7 @@ class GroupsCollectionViewController: UICollectionViewController, UICollectionVi
         let publicQuery = PFQuery(className: "Group")
         publicQuery.addAscendingOrder("title")
         publicQuery.whereKey("isPrivate", equalTo: false)
+        publicQuery.whereKey("userPointers", containsAllObjectsIn: [PFUser.current()!])
         publicQuery.findObjectsInBackground { (updatedGroups: [PFObject]?, error: Error?) in
             if (error == nil) {
                 self.publicGroups = updatedGroups as! [Group]

@@ -90,6 +90,7 @@ class RegistrationViewController: UIViewController {
     }
 
     @IBAction func register(_ sender: Any) {
+        self.dismissKeyboard()
         if (validEmail && validPassword && validPasswordConfirmation) {
             let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
             let waitingAlert = SCLAlertView(appearance: appearance)

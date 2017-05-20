@@ -10,10 +10,15 @@ import Parse
 import SCLAlertView
 import DropdownMenu
 
-class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+   
+
+    @IBOutlet weak var userInfoTable: UITableView!
     
     fileprivate var user: User?
     fileprivate var pickedImage: UIImage?
+    fileprivate var titles: [String] = ["Major"]
+    fileprivate var sectionCounts: [String : Int] = [:]
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -23,12 +28,22 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureExpandingMenuButton()
-        user = PFUser.current() as? User
-        setup()
+        self.user = PFUser.currentUserSubclass()
+        userInfoTable.refreshControl = UIRefreshControl()
+        userInfoTable.refreshControl?.addTarget(self, action: #selector(self.refresh), for: .allEvents)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.changeProfilePicture(_:)))
         self.profileImageView.addGestureRecognizer(tap)
+        setup()
     }
 
+    @objc func refresh() {
+        self.userInfoTable.refreshControl?.beginRefreshing()
+        user?.fetchInBackground(block: { (user: PFObject?, error: Error?) in
+            self.userInfoTable.reloadData()
+            self.userInfoTable.refreshControl?.endRefreshing()
+        })
+    }
+    
     func setup() {
         self.usernameLabel.text = user?.name
         if (user?.profileImage != nil) {
@@ -38,7 +53,42 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         dateFormatter.dateStyle = .medium
         let date = dateFormatter.string(from: (user?.createdAt!)!)
         memberDateLabel.text = "Member Since: " + date
+        if (user?.doubleMajor != nil && user?.doubleMajor != "") {
+            titles.append("Double Major")
+            sectionCounts["Double Major"] = 1
+        }
+        if (user?.minors != nil) {
+            if ((user?.minors?.count)! > 0) {
+                titles.append("Minors")
+                sectionCounts["Minors"] = (user?.minors?.count)!
+            }
+        }
+        if (user?.classes != nil) {
+            if ((user?.classes?.count)! > 0) {
+                titles.append("Classes")
+                sectionCounts["Classes"] = (user?.classes?.count)!
+            }
+        }
+        if (user?.clubs != nil) {
+            if ((user?.clubs?.count)! > 0) {
+                titles.append("Clubs")
+                sectionCounts["Clubs"] = (user?.clubs?.count)!
+            }
+        }
+        if (user?.jobs != nil) {
+            if ((user?.jobs?.count)! > 0) {
+                titles.append("Jobs")
+                sectionCounts["Jobs"] = (user?.jobs?.count)!
+            }
+        }
+
     }
+    
+    @IBAction func editProfile(_ sender: Any) {
+        let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+        self.present(dashboard!, animated: true, completion: nil)
+    }
+    
     
     @IBAction func saveUpdates(_ sender: Any) {
         let appearance = SCLAlertView.SCLAppearance(
@@ -46,10 +96,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         )
         let waitingAlert = SCLAlertView(appearance: appearance)
         let responder = waitingAlert.showWait("Please Wait", subTitle: "Saving your changes")
-        if (pickedImage != nil) {
-            let file = PFFile(data: pickedImage!.jpegData(.low)!)
-            user?.profileImage = file
-        }
+        
         user?.saveInBackground(block: { (success: Bool, error: Error?) in
             responder.close()
             if (error == nil) {
@@ -63,24 +110,43 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return titles.count
+    }
+    
+    
+    func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String? {
+        return titles[section]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if (section == 0) {
+            return 1
+        }
+        let title = titles[section]
+        return sectionCounts[title] ?? 0
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileDataCell", for: indexPath) as! ProfileInformationCell
+        let title = titles[indexPath.section]
+        switch title {
+            case "Major":
+                cell.informationLabel.text = user?.major
+            case "Double Major":
+                cell.informationLabel.text = user?.doubleMajor
+            case "Minors":
+                cell.informationLabel.text = user?.minors?[indexPath.row]
+            case "Classes":
+                cell.informationLabel.text = user?.classes?[indexPath.row]
+            case "Clubs":
+                cell.informationLabel.text = user?.clubs?[indexPath.row]
+            case "Jobs":
+                cell.informationLabel.text = user?.jobs?[indexPath.row]
+            default:
+            break
+        }
         return cell
     }
-    */
     
     @IBAction func logout(_ sender: Any) {
         let logoutSheet: UIAlertController = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
@@ -88,7 +154,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
         }
         let logoutActionButton: UIAlertAction = UIAlertAction(title: "Logout", style: .destructive) { action -> Void in
-            PFCloud.callFunction(inBackground: "unsetInstallations", withParameters: [:])
             PFUser.logOut()
             let appDelegate  = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window!.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "IntroViewController")
@@ -99,7 +164,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         logoutSheet.addAction(cancelActionButton)
         logoutSheet.addAction(logoutActionButton)
         self.present(logoutSheet, animated: true, completion: nil)
-
     }
     
 
@@ -121,6 +185,11 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UINavig
         self.pickedImage = pickedImage
         self.profileImageView.image = pickedImage.circle
         picker.dismiss(animated: true, completion: nil)
+        if (pickedImage != nil) {
+            let file = PFFile(data: pickedImage.jpegData(.low)!)
+            user?.profileImage = file
+            user?.saveInBackground()
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

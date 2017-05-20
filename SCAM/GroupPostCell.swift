@@ -6,7 +6,8 @@
 //  Copyright © 2017 SCAM16. All rights reserved.
 //
 
-import UIKit
+import Parse
+import Haneke
 
 class GroupPostCell: UITableViewCell {
 
@@ -23,7 +24,37 @@ class GroupPostCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        super.setSelected(false, animated: animated)
+    }
+    
+    func setDate(date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        self.creationDateLabel.text = formatter.string(from: date)
+    }
+    
+    var indexPath: IndexPath?
+    
+    func setImage(file: PFFile, circular: Bool, indexPath: IndexPath) {
+        var url = file.url!
+        if (!url.contains("https")) {
+            url = url.insert(string: "s", ind: 4)
+        }
+        let URL = NSURL(string: url)!
+        let cache = Shared.imageCache
+        let fetcher = NetworkFetcher<UIImage>(URL: URL as URL)
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            DispatchQueue.main.async() { () -> Void in
+                if (self.indexPath == indexPath) {
+                    if (circular == true) {
+                        self.profileImageView.image = image.circle
+                    } else {
+                        self.profileImageView.image = image
+                    }
+                }
+            }
+        }
     }
 
 }

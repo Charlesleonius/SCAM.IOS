@@ -19,8 +19,35 @@ class GroupPageTableViewController: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var newPostView: UIView!
     
+    @IBOutlet weak var joinedButton: UIButton!
+    
     override func viewDidLoad() {
     super.viewDidLoad()
+        
+        let currentProfile = PFUser.currentProfile()
+        
+        var groupJoined = false
+        for profile in group!.profilePointers! {
+            if (profile.objectId == currentProfile?.objectId) {
+                groupJoined = true
+            }
+        }
+        
+        if (groupJoined) {
+            joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+            joinedButton.setTitle("Joined", for: .normal)
+        } else {
+            joinedButton.setImage(nil, for: .normal)
+            joinedButton.setTitle("Join", for: .normal)
+        }
+        
+        if (group!.profilePointers!.contains(PFUser.currentProfile()!)) {
+            print("tru")
+            joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+            joinedButton.setTitle("Joined", for: .normal)
+        } else {
+            joinedButton.addTarget(self, action: #selector(self.joinGroup(_:)), for: .touchDown)
+        }
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.refresh), for: .allEvents)
@@ -47,6 +74,16 @@ class GroupPageTableViewController: UITableViewController {
         self.loadObjects()
         
     }
+    
+    
+    @IBAction func findUseful(_ sender: UIButton) {
+        print("cha")
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = self.tableView.cellForRow(at: indexPath) as! GroupPostCell
+        print(cell.nameLabel.text)
+    }
+    
+    //Page Controller
     
     @objc
     func refresh() {
@@ -103,6 +140,22 @@ class GroupPageTableViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func joinGroup(_ sender: UIButton) {
+        let params = [
+            "groupID": group?.objectId!
+        ]
+        PFCloud.callFunction(inBackground: "joinGroup", withParameters: params) { (success: Any?, error: Error?) in
+            if (error == nil) {
+                self.joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+                self.joinedButton.setTitle("Joined", for: .normal)
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    ///Table View
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -141,6 +194,14 @@ class GroupPageTableViewController: UITableViewController {
         cell.bodyLabel.sizeToFit()
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "postViewController") as! PostViewController
+        vc.post = posts[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 }

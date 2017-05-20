@@ -31,6 +31,8 @@
 		FF5E513B1E9782EF00FB9F5B /* FriendSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5E513A1E9782EF00FB9F5B /* FriendSelectionCell.swift */; };
 		FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */; };
 		FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */; };
+		FF7C78221ECFF6930006E148 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C78211ECFF6930006E148 /* PostViewController.swift */; };
+		FF7C78241ED002CB0006E148 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C78231ED002CB0006E148 /* Comment.swift */; };
 		FF81784C1EB2AB6800833E8D /* GroupCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF81784B1EB2AB6800833E8D /* GroupCollectionCell.swift */; };
 		FF81784E1EB2EDFF00833E8D /* GroupPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF81784D1EB2EDFF00833E8D /* GroupPageTableViewController.swift */; };
 		FF8178501EB2EF0600833E8D /* GroupPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF81784F1EB2EF0600833E8D /* GroupPostCell.swift */; };
@@ -45,9 +47,15 @@
 		FFC5C4121EB4670B00F7279D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5C4111EB4670B00F7279D /* Profile.swift */; };
 		FFC5C4141EB47ABD00F7279D /* CompletePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5C4131EB47ABD00F7279D /* CompletePost.swift */; };
 		FFC5C4161EB5131F00F7279D /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5C4151EB5131F00F7279D /* GroupMembersViewController.swift */; };
+		FFD457BC1ECC49C7003249E4 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */; };
+		FFD457BE1ECE4AC2003249E4 /* ConnectResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD457BD1ECE4AC2003249E4 /* ConnectResultCell.swift */; };
+		FFD457C01ECE9E70003249E4 /* SharedProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */; };
 		FFDC2ED31E5978FB00633BD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED11E5978FB00633BD5 /* Bolts.framework */; };
 		FFDC2ED41E5978FB00633BD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDC2ED21E5978FB00633BD5 /* Parse.framework */; };
 		FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDCCC701E623801005CAC26 /* ChatViewController.swift */; };
+		FFE003391ECBDE740097E5A9 /* InitialExtraCurricularProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE003381ECBDE740097E5A9 /* InitialExtraCurricularProfileViewController.swift */; };
+		FFE0033B1ECC0D250097E5A9 /* SJSUInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE0033A1ECC0D250097E5A9 /* SJSUInformation.swift */; };
+		FFE0033D1ECC24F80097E5A9 /* ProfileInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE0033C1ECC24F80097E5A9 /* ProfileInformationCell.swift */; };
 		FFE7A21A1E76367100C7CDA2 /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7A2191E76367100C7CDA2 /* ChatRoomCell.swift */; };
 		FFE7A21C1E7642BA00C7CDA2 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +115,8 @@
 		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialProfileViewController.swift; path = ../InitialProfileViewController.swift; sourceTree = "<group>"; };
 		FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassCellTableViewCell.swift; sourceTree = "<group>"; };
+		FF7C78211ECFF6930006E148 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
+		FF7C78231ED002CB0006E148 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		FF81784B1EB2AB6800833E8D /* GroupCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionCell.swift; sourceTree = "<group>"; };
 		FF81784D1EB2EDFF00833E8D /* GroupPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPageTableViewController.swift; sourceTree = "<group>"; };
 		FF81784F1EB2EF0600833E8D /* GroupPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPostCell.swift; sourceTree = "<group>"; };
@@ -122,9 +132,15 @@
 		FFC5C4111EB4670B00F7279D /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		FFC5C4131EB47ABD00F7279D /* CompletePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletePost.swift; sourceTree = "<group>"; };
 		FFC5C4151EB5131F00F7279D /* GroupMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMembersViewController.swift; path = SCAM/GroupMembersViewController.swift; sourceTree = "<group>"; };
+		FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		FFD457BD1ECE4AC2003249E4 /* ConnectResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectResultCell.swift; sourceTree = "<group>"; };
+		FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedProfileViewController.swift; sourceTree = "<group>"; };
 		FFDC2ED11E5978FB00633BD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
 		FFDC2ED21E5978FB00633BD5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Release-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		FFDCCC701E623801005CAC26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FFE003381ECBDE740097E5A9 /* InitialExtraCurricularProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialExtraCurricularProfileViewController.swift; sourceTree = "<group>"; };
+		FFE0033A1ECC0D250097E5A9 /* SJSUInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSUInformation.swift; sourceTree = "<group>"; };
+		FFE0033C1ECC24F80097E5A9 /* ProfileInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInformationCell.swift; sourceTree = "<group>"; };
 		FFE7A2191E76367100C7CDA2 /* ChatRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
 		FFE7A21B1E7642BA00C7CDA2 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,9 +231,12 @@
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
+				FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */,
+				FF7C78211ECFF6930006E148 /* PostViewController.swift */,
 				FFE7A21D1E7642E800C7CDA2 /* PFObjects */,
 				FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */,
 				FFC5C40F1EB4431700F7279D /* ProfileTableViewController.swift */,
+				FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */,
 				FFC5C4181EB516AF00F7279D /* Group */,
 				FFC5C4171EB5169300F7279D /* Chat */,
 				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
@@ -251,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */,
+				FFE003381ECBDE740097E5A9 /* InitialExtraCurricularProfileViewController.swift */,
+				FFE0033A1ECC0D250097E5A9 /* SJSUInformation.swift */,
 				FF4733F21E595F1300C4FE23 /* IntroViewController.swift */,
 				FF4911651E59766D00BA6960 /* LoginViewController.swift */,
 				FF4733F01E595ACF00C4FE23 /* RegistrationViewController.swift */,
@@ -261,6 +282,8 @@
 		FF7094AC1E6B63A6002E14EB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FFD457BD1ECE4AC2003249E4 /* ConnectResultCell.swift */,
+				FFE0033C1ECC24F80097E5A9 /* ProfileInformationCell.swift */,
 				FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */,
 				FF81784F1EB2EF0600833E8D /* GroupPostCell.swift */,
 				FF81784B1EB2AB6800833E8D /* GroupCollectionCell.swift */,
@@ -315,6 +338,7 @@
 				FFBDF7891E7A37C900558321 /* ChatRoomObserver.swift */,
 				FFBDF78B1E7AFBE400558321 /* ParseContactModel.swift */,
 				FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */,
+				FF7C78231ED002CB0006E148 /* Comment.swift */,
 			);
 			name = PFObjects;
 			sourceTree = "<group>";
@@ -597,6 +621,7 @@
 				FFC5C40E1EB4425A00F7279D /* User.swift in Sources */,
 				FF81784C1EB2AB6800833E8D /* GroupCollectionCell.swift in Sources */,
 				FF2BC8121EC9121D0063940E /* GroupMemberCell.swift in Sources */,
+				FF7C78221ECFF6930006E148 /* PostViewController.swift in Sources */,
 				FF7094AB1E6B630E002E14EB /* AddClassCellTableViewCell.swift in Sources */,
 				FFE7A21A1E76367100C7CDA2 /* ChatRoomCell.swift in Sources */,
 				FF41B84D1EB33F39002E8857 /* Post.swift in Sources */,
@@ -609,19 +634,26 @@
 				FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */,
 				FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */,
 				FFE7A21C1E7642BA00C7CDA2 /* ChatRoom.swift in Sources */,
+				FFD457BC1ECC49C7003249E4 /* ConnectViewController.swift in Sources */,
 				FF8178501EB2EF0600833E8D /* GroupPostCell.swift in Sources */,
 				FFBDF7881E777FEB00558321 /* NewChatViewController.swift in Sources */,
 				FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */,
+				FFE0033D1ECC24F80097E5A9 /* ProfileInformationCell.swift in Sources */,
+				FFE003391ECBDE740097E5A9 /* InitialExtraCurricularProfileViewController.swift in Sources */,
 				FF41B84F1EB43924002E8857 /* NewPostViewController.swift in Sources */,
+				FFD457BE1ECE4AC2003249E4 /* ConnectResultCell.swift in Sources */,
 				FFC5C4121EB4670B00F7279D /* Profile.swift in Sources */,
 				FF4733F31E595F1300C4FE23 /* IntroViewController.swift in Sources */,
+				FFD457C01ECE9E70003249E4 /* SharedProfileViewController.swift in Sources */,
 				FFBDF78C1E7AFBE400558321 /* ParseContactModel.swift in Sources */,
 				FF2BC8141ECAC1730063940E /* JSQPFMessage.swift in Sources */,
 				FF4733F11E595ACF00C4FE23 /* RegistrationViewController.swift in Sources */,
+				FFE0033B1ECC0D250097E5A9 /* SJSUInformation.swift in Sources */,
 				FFC5C4161EB5131F00F7279D /* GroupMembersViewController.swift in Sources */,
 				FF8BECBC1E8652D000ED0A95 /* GroupsCollectionViewController.swift in Sources */,
 				FF81784E1EB2EDFF00833E8D /* GroupPageTableViewController.swift in Sources */,
 				FF5E51391E97800B00FB9F5B /* NewGroupViewController.swift in Sources */,
+				FF7C78241ED002CB0006E148 /* Comment.swift in Sources */,
 				FFBDAB811E72042B009F1075 /* SCMTextField.swift in Sources */,
 				FFDCCC711E623801005CAC26 /* ChatViewController.swift in Sources */,
 				FF4733BF1E59419300C4FE23 /* AppDelegate.swift in Sources */,

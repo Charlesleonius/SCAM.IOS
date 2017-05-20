@@ -14,9 +14,16 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var roomsTable: UITableView!
     
-    fileprivate var rooms: [ChatRoom] = []
+    fileprivate var groupRooms: [ChatRoom] = []
+    fileprivate var privateRooms: [ChatRoom] = []
     private let refreshControl = UIRefreshControl()
 
+    @IBOutlet weak var typeSelector: UISegmentedControl!
+    
+    @IBAction func changeType(_ sender: Any) {
+        self.roomsTable.reloadData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +39,16 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
         query.addDescendingOrder("updatedAt")
         query.findObjectsInBackground { (updatedRooms: [PFObject]?, error: Error?) in
             if (error == nil) {
-                self.rooms = updatedRooms as! [ChatRoom]
+                self.groupRooms = []
+                self.privateRooms = []
+                for room in updatedRooms! {
+                    let room = room as! ChatRoom
+                    if ((room.profilePointers?.count)! > 1) {
+                        self.groupRooms.append(room)
+                    } else {
+                        self.privateRooms.append(room)
+                    }
+                }
                 DispatchQueue.main.async{
                     self.roomsTable.reloadData()
                     self.refreshControl.endRefreshing()
@@ -48,7 +64,11 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        rooms[indexPath.row].deleteInBackground(block: { (success: Bool, error: Error?) in
+        var room = privateRooms[indexPath.row]
+        if (typeSelector.selectedSegmentIndex == 1) {
+            room = groupRooms[indexPath.row]
+        }
+        room.deleteInBackground(block: { (success: Bool, error: Error?) in
             if (success) {
                 self.refresh()
             }
@@ -56,22 +76,32 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rooms.count
+        if (typeSelector.selectedSegmentIndex == 0) {
+            return groupRooms.count
+        }
+        return privateRooms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "chatRoomCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ChatRoomCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        let room = rooms[indexPath.row]
+        var room = privateRooms[indexPath.row]
+        if (typeSelector.selectedSegmentIndex == 1) {
+            room = groupRooms[indexPath.row]
+        }
         if (room.title != nil) {
             cell.roomTitle.text = room.title
         } else {
             let currentUsername = PFUser.current()!["name"] as! String
             var nameTitle = ""
-            for name in room.contactNames! {
-                if (name != currentUsername) {
-                    nameTitle = name
+            for i in 0..<(room.contactNames?.count)! {
+                if (room.contactNames![i] != currentUsername) {
+                    if (i != (room.contactNames?.count)! - 1 && (room.contactNames?.count)! > 2) {
+                        nameTitle += room.contactNames![i] + ", "
+                    } else {
+                        nameTitle += room.contactNames![i]
+                    }
                 }
             }
             cell.roomTitle.text = nameTitle
@@ -85,7 +115,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
         if (room.title != nil) {
             setImage(string: room.title!)
         } else {
-            setImage(string: "SCAM")
+            setImage(string: "Group")
         }
         if (room.profilePointers?.count == 1) {
             for profile in room.profilePointers! {
@@ -112,7 +142,10 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
-        let room = rooms[indexPath.row]
+        var room = privateRooms[indexPath.row]
+        if (typeSelector.selectedSegmentIndex == 1) {
+            room = groupRooms[indexPath.row]
+        }
         let chatView = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController")
                 as! ChatViewController
         chatView.chatRoom = room

@@ -27,7 +27,6 @@ class NewChatViewController: UIViewController, MBContactPickerDelegate, MBContac
         contactPickerView.prompt = "To:"
         messageView.isHidden = true
         self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.hideKeyboardWhenTappedAround()
         self.loadObjects()
     }
     

@@ -13,6 +13,12 @@ class Profile: PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var username: String?
     @NSManaged var profileImage: PFFile?
+    @NSManaged var major: String?
+    @NSManaged var doubleMajor: String?
+    @NSManaged var minors: [String]?
+    @NSManaged var classes: [String]?
+    @NSManaged var clubs: [String]?
+    @NSManaged var jobs: [String]?
     
     class func parseClassName() -> String {
         return "Profile"

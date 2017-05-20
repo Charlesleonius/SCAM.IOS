@@ -6,6 +6,7 @@ PODS:
   - DropdownMenu (1.0.0)
   - ExpandingMenu (0.3.1)
   - HanekeSwift (0.10.1)
+  - IQKeyboardManagerSwift (4.0.8)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - DropdownMenu
   - ExpandingMenu
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-3`)
+  - IQKeyboardManagerSwift
   - JSQMessagesViewController
   - MBContactPicker
   - Parse
@@ -53,6 +55,7 @@ SPEC CHECKSUMS:
   DropdownMenu: 5777e17ac6ddbc69b151719b83a838da81440786
   ExpandingMenu: 107548f3cb8c04b28a8b6b436983f506849484cc
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBContactPicker: 154250dbc77eb4f57aa9b81910899a1631956677
@@ -62,6 +65,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 5637ab93b03c3d715786db78790f40244850748c
+PODFILE CHECKSUM: 17fa2f37ebf15587fdf570be1aa77b77400b1a5f
 
 COCOAPODS: 1.0.1

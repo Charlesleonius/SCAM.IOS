@@ -30,6 +30,14 @@ class SCMTextField: UITextField {
         self.backgroundColor = UIColor.groupTableViewBackground
         self.layer.masksToBounds = true
         setupDropDown()
+        self.addTarget(nil, action:#selector(self.done), for:.editingDidEndOnExit)
+        self.returnKeyType = .done
+    }
+    
+    @objc
+    func done() {
+        self.endEditing(true)
+        self.dropDown.hide()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +50,8 @@ class SCMTextField: UITextField {
         setupDropDown()
         self.addTarget(self, action: #selector(self.search), for: .editingChanged)
         self.addTarget(self, action: #selector(self.showDropdown), for: .editingDidBegin)
+        self.addTarget(nil, action:Selector(("firstResponderAction:")), for:.editingDidEndOnExit)
+        self.returnKeyType = .done
     }
     
     func setDataSource(newDataSource: [String]) {
@@ -76,6 +86,8 @@ class SCMTextField: UITextField {
     }
     
     fileprivate func setupDropDown() {
+        self.keyboardDistanceFromTextField = 250
+        dropDown.direction = .bottom
         dropDown.width = self.bounds.width
         dropDown.anchorView = self
         dropDown.backgroundColor = UIColor.white
@@ -95,6 +107,13 @@ class SCMTextField: UITextField {
         dropDown.selectionAction = { [unowned self] (index, item) in
             self.text = item
         }
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+        self.dropDown.hide()
+        return false
     }
 
 }

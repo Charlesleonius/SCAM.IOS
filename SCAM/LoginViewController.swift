@@ -33,8 +33,17 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsername(inBackground: emailField.text!.lowercased(), password: passwordField.text!) { (user: PFUser?, error: Error?) in
             responder.close()
             if (error == nil) {
-                let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
-                self.present(dashboard!, animated: true, completion: nil)
+                var vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                if let completedRequiredFields = PFUser.currentUserSubclass()?.hasCompletedRequiredFields as? Bool {
+                    if (!completedRequiredFields) {
+                        vc = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+                    }
+                    
+                } else {
+                    vc = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+                }
+
+                self.present(vc!, animated: true, completion: nil)
             } else {
                 SCLAlertView().showError("Oops", subTitle: (error?.localizedDescription)!)
             }

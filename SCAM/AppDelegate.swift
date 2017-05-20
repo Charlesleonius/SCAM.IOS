@@ -12,6 +12,8 @@ import SCLAlertView
 import ExpandingMenu
 import UserNotifications
 import Haneke
+import DropDown
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        DropDown.startListeningToKeyboard()
+        IQKeyboardManager.sharedManager().enable = true
         
         //Push Notification Registration
         if #available(iOS 10.0, *) {
@@ -38,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /******Parse Config*******/
         
         //Register Subclasses
+        User.registerSubclass()
         Message.registerSubclass()
         ChatRoom.registerSubclass()
         ChatRoomObserver.registerSubclass()
@@ -66,7 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
+            var rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
+            if let completedRequiredFields = PFUser.currentUserSubclass()?.hasCompletedRequiredFields {
+                if (!completedRequiredFields) {
+                    rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+                }
+
+            } else {
+                rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
+            }
             self.window?.rootViewController?.dismissKeyboard()
             self.window?.rootViewController = rootView
             UIApplication.shared.statusBarStyle = .lightContent
@@ -109,7 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshRooms"), object: nil)
     }
 
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -135,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIViewController {
+    
     func configureExpandingMenuButton() {
         let menuButtonSize: CGSize = CGSize(width: 64.0, height: 64.0)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: #imageLiteral(resourceName: "menuButtonCircular"), centerHighlightedImage: #imageLiteral(resourceName: "menuButtonCircular"))
@@ -164,6 +178,14 @@ extension UIViewController {
             menuButton.addMenuItems([profile])
         }
         
+        if (!(self is ChatRoomsViewController)) {
+            let chats = ExpandingMenuItem(size: menuButtonSize, title: "Chats", image: #imageLiteral(resourceName: "chat"), highlightedImage: #imageLiteral(resourceName: "chat"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+                self.present(vc!, animated: true, completion: nil)
+            }
+            menuButton.addMenuItems([chats])
+        }
+        
         if (!(self is GroupsCollectionViewController)) {
             let groups = ExpandingMenuItem(size: menuButtonSize, title: "Groups", image: #imageLiteral(resourceName: "groups"), highlightedImage: #imageLiteral(resourceName: "groups"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
@@ -172,12 +194,12 @@ extension UIViewController {
             menuButton.addMenuItems([groups])
         }
         
-        if (!(self is ChatRoomsViewController)) {
-            let chats = ExpandingMenuItem(size: menuButtonSize, title: "Chats", image: #imageLiteral(resourceName: "chat"), highlightedImage: #imageLiteral(resourceName: "chat"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
+        if (!(self is ConnectViewController)) {
+            let connect = ExpandingMenuItem(size: menuButtonSize, title: "Connect", image: #imageLiteral(resourceName: "search"), highlightedImage: #imageLiteral(resourceName: "search"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "connectNavigationViewController")
                 self.present(vc!, animated: true, completion: nil)
             }
-            menuButton.addMenuItems([chats])
+            menuButton.addMenuItems([connect])
         }
         
         menuButton.willPresentMenuItems = { (menu) -> Void in}
@@ -221,7 +243,6 @@ extension UIImageView {
             }
         }
     }
-    
 }
 
 extension UIImage {
@@ -308,8 +329,7 @@ extension UIView {
 extension PFUser {
     static func currentProfile() -> Profile? {
         if (PFUser.current() != nil) {
-            let user = PFUser.current() as! User
-            return user.profile as? Profile
+            return PFUser.current()!["profile"] as? Profile
         }
         return nil
     }
