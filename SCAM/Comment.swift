@@ -13,6 +13,7 @@ class Comment: PFObject, PFSubclassing {
     @NSManaged var author: PFObject?
     @NSManaged var post: PFObject?
     @NSManaged var body: String?
+    @NSManaged var helped: [PFObject]?
     
     class func parseClassName() -> String {
         return "Comment"

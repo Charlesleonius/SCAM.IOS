@@ -14,6 +14,7 @@ class Post: PFObject, PFSubclassing {
     @NSManaged var group: PFObject?
     @NSManaged var body: String?
     @NSManaged var image: PFFile?
+    @NSManaged var helped: [PFObject]?
     
     class func parseClassName() -> String {
         return "Post"

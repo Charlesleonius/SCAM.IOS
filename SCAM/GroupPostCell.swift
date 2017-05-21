@@ -18,6 +18,8 @@ class GroupPostCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var postImageViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var usefulCountLabel: UILabel!
+    @IBOutlet weak var findUsefulButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

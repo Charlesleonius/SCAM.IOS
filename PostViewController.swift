@@ -14,6 +14,7 @@ class PostViewController: UITableViewController {
     var post: Post?
     var comments: [Comment] = []
     
+    @IBOutlet weak var usefulCountLabel: UILabel!
     @IBOutlet weak var creationTimeLabel: UILabel!
     @IBOutlet weak var commentField: UITextView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -80,6 +81,15 @@ class PostViewController: UITableViewController {
             self.postImageView.image = nil
         }
         
+        if (post?.helped != nil) {
+            for profile in post!.helped! {
+                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                    self.usefulButton.setTitle("Nevermind", for: .normal)
+                }
+            }
+            self.usefulCountLabel.text = post!.helped!.count.description + " People found this useful"
+        }
+        
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
@@ -120,26 +130,37 @@ class PostViewController: UITableViewController {
     @IBAction func findPostUseful(_ sender: Any) {
         let params = [
             "post": true,
-            "ID" : self.post?.objectId!
+            "ID" : self.post!.objectId!
         ] as [String : Any]
         PFCloud.callFunction(inBackground: "findUseful", withParameters:
-        params) { (success: Any?, error: Error?) in
+        params) { (newCount: Any?, error: Error?) in
             if (error == nil) {
-                self.usefulButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+                self.usefulButton.setTitle("Nevermind", for: .normal)
+                if(newCount != nil) {
+                    self.usefulCountLabel.text = newCount as? String
+                }
+            } else {
+                print(error!)
             }
         }
     }
     
     @IBAction func findCommentUseful(_ sender: UIButton) {
+        let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as! GroupPostCell
         let comment = comments[sender.tag]
         let params = [
             "post": false,
             "ID" : comment.objectId!
             ] as [String : Any]
         PFCloud.callFunction(inBackground: "findUseful", withParameters:
-        params) { (success: Any?, error: Error?) in
+        params) { (newCount: Any?, error: Error?) in
             if (error == nil) {
-                sender.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+                sender.setTitle("Nevermind", for: .normal)
+                if(newCount != nil) {
+                    cell.usefulCountLabel.text = newCount as? String
+                }
+            } else {
+                print(error!)
             }
         }
 
@@ -199,42 +220,17 @@ class PostViewController: UITableViewController {
         
         cell.bodyLabel.sizeToFit()
         
+        if (comment.helped != nil) {
+            for profile in comment.helped! {
+                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                    cell.findUsefulButton.setTitle("Nevermind", for: .normal)
+                }
+            }
+            cell.usefulCountLabel.text = comment.helped!.count.description + " People found this useful"
+        }
+        cell.findUsefulButton.tag = indexPath.row
+        
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

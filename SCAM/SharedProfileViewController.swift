@@ -112,25 +112,4 @@ class SharedProfileViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-//    @IBAction func logout(_ sender: Any) {
-//        let logoutSheet: UIAlertController = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
-//        
-//        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-//        }
-//        let logoutActionButton: UIAlertAction = UIAlertAction(title: "Logout", style: .destructive) { action -> Void in
-//            PFUser.logOut()
-//            let appDelegate  = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window!.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "IntroViewController")
-//            self.dismiss(animated: true) {
-//                appDelegate.window?.makeKeyAndVisible()
-//            }
-//        }
-//        logoutSheet.addAction(cancelActionButton)
-//        logoutSheet.addAction(logoutActionButton)
-//        self.present(logoutSheet, animated: true, completion: nil)
-//    }
-    
-
-    
-    
 }

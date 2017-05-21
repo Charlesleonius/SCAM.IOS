@@ -115,7 +115,7 @@
 		FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCAM-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF7094A81E6B5F11002E14EB /* InitialProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialProfileViewController.swift; path = ../InitialProfileViewController.swift; sourceTree = "<group>"; };
 		FF7094AA1E6B630E002E14EB /* AddClassCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassCellTableViewCell.swift; sourceTree = "<group>"; };
-		FF7C78211ECFF6930006E148 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
+		FF7C78211ECFF6930006E148 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		FF7C78231ED002CB0006E148 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		FF81784B1EB2AB6800833E8D /* GroupCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionCell.swift; sourceTree = "<group>"; };
 		FF81784D1EB2EDFF00833E8D /* GroupPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPageTableViewController.swift; sourceTree = "<group>"; };
@@ -232,14 +232,13 @@
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
 				FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */,
-				FF7C78211ECFF6930006E148 /* PostViewController.swift */,
+				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
 				FFE7A21D1E7642E800C7CDA2 /* PFObjects */,
 				FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */,
 				FFC5C40F1EB4431700F7279D /* ProfileTableViewController.swift */,
 				FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */,
 				FFC5C4181EB516AF00F7279D /* Group */,
 				FFC5C4171EB5169300F7279D /* Chat */,
-				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
 				FF7094AC1E6B63A6002E14EB /* Cells */,
 				FF4911641E59749900BA6960 /* Login and Registration */,
 				FF4733CC1E59419300C4FE23 /* Info.plist */,
@@ -320,6 +319,7 @@
 		FFC5C4191EB516D300F7279D /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				FF7C78211ECFF6930006E148 /* PostViewController.swift */,
 				FF41B84E1EB43924002E8857 /* NewPostViewController.swift */,
 			);
 			name = Post;

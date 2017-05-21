@@ -42,7 +42,6 @@ class GroupPageTableViewController: UITableViewController {
         }
         
         if (group!.profilePointers!.contains(PFUser.currentProfile()!)) {
-            print("tru")
             joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
             joinedButton.setTitle("Joined", for: .normal)
         } else {
@@ -77,10 +76,24 @@ class GroupPageTableViewController: UITableViewController {
     
     
     @IBAction func findUseful(_ sender: UIButton) {
-        print("cha")
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.tableView.cellForRow(at: indexPath) as! GroupPostCell
-        print(cell.nameLabel.text)
+        let cell = self.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as! GroupPostCell
+        let post = self.posts[sender.tag]
+        let params = [
+            "post": true,
+            "ID" : post.objectId!
+            ] as [String : Any]
+        PFCloud.callFunction(inBackground: "findUseful", withParameters:
+        params) { (newCount: Any?, error: Error?) in
+            if (error == nil) {
+                if(newCount != nil) {
+                    cell.usefulCountLabel.text = newCount as? String
+                }
+                cell.findUsefulButton.setTitle("Nevermind", for: .normal)
+            } else {
+                print(error!)
+            }
+        }
+
     }
     
     //Page Controller
@@ -98,6 +111,7 @@ class GroupPageTableViewController: UITableViewController {
                 let completePost = CompletePost()
                 completePost.author = post.author as? Profile
                 completePost.body = post.body
+                completePost.helped = post.helped
                 do {
                     let data = try post.image?.getData()
                     if (data != nil) {
@@ -142,14 +156,14 @@ class GroupPageTableViewController: UITableViewController {
     
     @IBAction func joinGroup(_ sender: UIButton) {
         let params = [
-            "groupID": group?.objectId!
+            "groupID": group!.objectId!
         ]
         PFCloud.callFunction(inBackground: "joinGroup", withParameters: params) { (success: Any?, error: Error?) in
             if (error == nil) {
                 self.joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
                 self.joinedButton.setTitle("Joined", for: .normal)
             } else {
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
         }
     }
@@ -191,13 +205,22 @@ class GroupPageTableViewController: UITableViewController {
             cell.bodyImageView.image = nil
         }
         
+        if (post.helped != nil) {
+            for profile in post.helped! {
+                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                    cell.findUsefulButton.setTitle("Nevermind", for: .normal)
+                }
+            }
+            cell.usefulCountLabel.text = post.helped!.count.description + " People found this useful"
+        }
+        cell.findUsefulButton.tag = indexPath.row
+        
         cell.bodyLabel.sizeToFit()
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "postViewController") as! PostViewController
         vc.post = posts[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
