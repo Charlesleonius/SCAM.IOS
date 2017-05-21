@@ -32,9 +32,9 @@ class PostViewController: UITableViewController {
         super.viewDidLoad()
         
         self.commentField.keyboardDistanceFromTextField = 250
+        
         tableView.estimatedRowHeight = 200;
         tableView.rowHeight = UITableViewAutomaticDimension
-
         
         let header = self.headerView!
         let border = CALayer()
@@ -61,20 +61,22 @@ class PostViewController: UITableViewController {
             self.profileImageView.image = #imageLiteral(resourceName: "defaultAvatar")
         }
         
-        //Set up post content
-        postBodyLabel.text = post?.body
-        if (post?.image != nil ) {
-            self.postImageView.loadFromChacheThenParse(file: post!.image!)
-        }
+
+        self.postBodyLabel.sizeToFit()
         
         if (post?.image != nil) {
-            self.postImageView.isHidden = false
-            self.postImageView.loadFromChacheThenParse(file: post!.image!)
-//            let ratio = headerView.frame.width / (post?.image?.size.height)!
-//            postImageViewHeight.constant = (post.image?.size.height)! * ratio
+            self.post?.image?.getDataInBackground(block: { (data: Data?, error: Error?) in
+                if (data != nil) {
+                    let image = UIImage(data: data!)
+                    self.postImageView.image = image
+                    self.postImageView.isHidden = false
+                    let ratio = self.headerView.frame.width / (image?.size.height)!
+                    self.postImageViewHeight.constant = (image?.size.height)! * ratio
+                }
+            })
         } else {
             self.postImageView.isHidden = true
-            postImageViewHeight.constant = 0
+            self.postImageViewHeight.constant = 0
             self.postImageView.image = nil
         }
         
@@ -95,7 +97,10 @@ class PostViewController: UITableViewController {
     }
     
     @IBAction func postComment(_ sender: Any) {
-        var comment = Comment()
+        if (commentField.text == nil || commentField.text == "") {
+            return
+        }
+        let comment = Comment()
         comment.body = commentField.text
         comment.post = post
         comment.saveInBackground { (success: Bool, error: Error?) in
@@ -110,6 +115,34 @@ class PostViewController: UITableViewController {
     @IBAction func clearComment(_ sender: Any) {
         self.commentField.text = ""
         self.commentField.resignFirstResponder()
+    }
+    
+    @IBAction func findPostUseful(_ sender: Any) {
+        let params = [
+            "post": true,
+            "ID" : self.post?.objectId!
+        ] as [String : Any]
+        PFCloud.callFunction(inBackground: "findUseful", withParameters:
+        params) { (success: Any?, error: Error?) in
+            if (error == nil) {
+                self.usefulButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+            }
+        }
+    }
+    
+    @IBAction func findCommentUseful(_ sender: UIButton) {
+        let comment = comments[sender.tag]
+        let params = [
+            "post": false,
+            "ID" : comment.objectId!
+            ] as [String : Any]
+        PFCloud.callFunction(inBackground: "findUseful", withParameters:
+        params) { (success: Any?, error: Error?) in
+            if (error == nil) {
+                sender.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+            }
+        }
+
     }
     
     @objc func objectsDidLoad(error: Error? = nil) {
@@ -132,7 +165,7 @@ class PostViewController: UITableViewController {
             }
         }
     }
-    
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
