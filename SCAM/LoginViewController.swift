@@ -34,15 +34,9 @@ class LoginViewController: UIViewController {
             responder.close()
             if (error == nil) {
                 var vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
-                if let completedRequiredFields = PFUser.currentUserSubclass()?.hasCompletedRequiredFields as? Bool {
-                    if (!completedRequiredFields) {
+                if (!User.current()!.hasCompletedRequiredFields) {
                         vc = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
-                    }
-                    
-                } else {
-                    vc = self.storyboard?.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
                 }
-
                 self.present(vc!, animated: true, completion: nil)
             } else {
                 SCLAlertView().showError("Oops", subTitle: (error?.localizedDescription)!)

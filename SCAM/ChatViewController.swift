@@ -62,9 +62,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             case .created(let RoomUpdate), .entered(let RoomUpdate):
                 print(RoomUpdate)
                 observeMessages()
-            case .updated(let _):
+            case .updated( _):
                 observeMessages()
-            case .deleted(let _), .left(let _):
+            case .deleted( _), .left( _):
                 observeMessages()
             break
         }
@@ -82,7 +82,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
 
     private func observeMessages() {
         let messageQuery = Message.query()
-        messageQuery?.whereKey("room", equalTo: self.chatRoom)
+        messageQuery?.whereKey("room", equalTo: self.chatRoom!)
         messageQuery?.includeKey("sender")
         messageQuery?.includeKey("senderProfile")
         messageQuery?.addAscendingOrder("createdAt")

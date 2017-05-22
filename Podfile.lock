@@ -27,7 +27,7 @@ DEPENDENCIES:
   - BEMCheckBox
   - DropDown
   - DropdownMenu
-  - ExpandingMenu
+  - ExpandingMenu (~> 0.3)
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-3`)
   - IQKeyboardManagerSwift
   - JSQMessagesViewController
@@ -44,7 +44,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   HanekeSwift:
-    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :commit: 2f6d87f1f725d204d85cb34492e8c399cd5a200f
     :git: https://github.com/Haneke/HanekeSwift
 
 SPEC CHECKSUMS:
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 17fa2f37ebf15587fdf570be1aa77b77400b1a5f
+PODFILE CHECKSUM: 96dd65fa428dfdf996840b0eac64cce72168ca16
 
 COCOAPODS: 1.0.1

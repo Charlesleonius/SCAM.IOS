@@ -10,7 +10,7 @@ import Parse
 
 class ConnectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
-    var user = PFUser.currentUserSubclass()
+    var user = User.current()
     
     var groups: [[PFObject]] = [[],[],[],[],[],[]]
     var majorGroups: [Group] = []
@@ -101,7 +101,7 @@ class ConnectViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc
     func loadObjects() {
         self.groups = [[],[],[],[],[],[]]
-        let user = PFUser.currentUserSubclass()!
+        let user = User.current()!
         if (user.major != nil) {
             var majors = [user.major!]
             if (user.doubleMajor != nil) {
@@ -277,7 +277,7 @@ class ConnectViewController: UIViewController, UITableViewDelegate, UITableViewD
         return thisPoints > thatPoints
     }
     
-    ///Table View
+    //Table View
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
@@ -321,10 +321,9 @@ class ConnectViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.object = group
         } else {
             if let profile = groups[indexPath.section][indexPath.row] as? Profile {
+                cell.resultImageView.image = #imageLiteral(resourceName: "defaultAvatar")
                 if (profile.profileImage != nil) {
                     cell.setImage(file: profile.profileImage!, circular: false, indexPath: indexPath)
-                } else {
-                    cell.resultImageView.image = #imageLiteral(resourceName: "defaultAvatar")
                 }
                 cell.titleLabel.text = profile.name
                 cell.subtitleLabel.text = profile.major

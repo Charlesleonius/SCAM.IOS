@@ -11,7 +11,6 @@
 		808998DEFCED2F6BF36D78BA /* Pods_SCAMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B54B7BAB396E6EB2DE2BC /* Pods_SCAMTests.framework */; };
 		98752FBE5D8B71CA86496587 /* Pods_SCAMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B63FF054BFA1BE53A99C184 /* Pods_SCAMUITests.framework */; };
 		FF0F99C81E98D36A005B928F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F99C71E98D36A005B928F /* Group.swift */; };
-		FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */; };
 		FF27DD451E625AD800D5EBA5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27DD441E625AD800D5EBA5 /* Message.swift */; };
 		FF2BC8121EC9121D0063940E /* GroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */; };
 		FF2BC8141ECAC1730063940E /* JSQPFMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */; };
@@ -87,7 +86,6 @@
 		B30387C2B317A513CBF8C863 /* Pods-SCAMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4DBF3A86DD65B2A640F1FF6 /* Pods-SCAMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCAMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCAMTests/Pods-SCAMTests.release.xcconfig"; sourceTree = "<group>"; };
 		FF0F99C71E98D36A005B928F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FF27DD441E625AD800D5EBA5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FF2BC8111EC9121D0063940E /* GroupMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMemberCell.swift; path = ../GroupMemberCell.swift; sourceTree = "<group>"; };
 		FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPFMessage.swift; sourceTree = "<group>"; };
@@ -226,23 +224,20 @@
 			isa = PBXGroup;
 			children = (
 				FF92ABEA1E7DC21C000227CE /* SCAM.entitlements */,
+				FF4733CC1E59419300C4FE23 /* Info.plist */,
 				FF4733C71E59419300C4FE23 /* Assets.xcassets */,
 				FF4733EE1E59423900C4FE23 /* Media.xcassets */,
 				FF4733C41E59419300C4FE23 /* Main.storyboard */,
 				FF4733C91E59419300C4FE23 /* LaunchScreen.storyboard */,
 				FF4733BE1E59419300C4FE23 /* AppDelegate.swift */,
-				FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */,
-				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
-				FFE7A21D1E7642E800C7CDA2 /* PFObjects */,
-				FF10636B1E61536500A3B7A3 /* DashboardViewController.swift */,
-				FFC5C40F1EB4431700F7279D /* ProfileTableViewController.swift */,
-				FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */,
+				FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */,
+				FF7B44FB1ED25F89009A6B35 /* Connect */,
+				FFE7A21D1E7642E800C7CDA2 /* Models */,
+				FF7B44FA1ED25F5F009A6B35 /* Profile */,
 				FFC5C4181EB516AF00F7279D /* Group */,
 				FFC5C4171EB5169300F7279D /* Chat */,
 				FF7094AC1E6B63A6002E14EB /* Cells */,
 				FF4911641E59749900BA6960 /* Login and Registration */,
-				FF4733CC1E59419300C4FE23 /* Info.plist */,
-				FF6AC2651E597AB00075555B /* SCAM-Bridging-Header.h */,
 			);
 			path = SCAM;
 			sourceTree = "<group>";
@@ -293,6 +288,23 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		FF7B44FA1ED25F5F009A6B35 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FFD457BF1ECE9E70003249E4 /* SharedProfileViewController.swift */,
+				FFC5C40F1EB4431700F7279D /* ProfileTableViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		FF7B44FB1ED25F89009A6B35 /* Connect */ = {
+			isa = PBXGroup;
+			children = (
+				FFD457BB1ECC49C7003249E4 /* ConnectViewController.swift */,
+			);
+			name = Connect;
+			sourceTree = "<group>";
+		};
 		FFC5C4171EB5169300F7279D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,9 +337,10 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
-		FFE7A21D1E7642E800C7CDA2 /* PFObjects */ = {
+		FFE7A21D1E7642E800C7CDA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FFBDAB801E72042B009F1075 /* SCMTextField.swift */,
 				FFC5C40D1EB4425A00F7279D /* User.swift */,
 				FFC5C4111EB4670B00F7279D /* Profile.swift */,
 				FF0F99C71E98D36A005B928F /* Group.swift */,
@@ -340,7 +353,7 @@
 				FF2BC8131ECAC1730063940E /* JSQPFMessage.swift */,
 				FF7C78231ED002CB0006E148 /* Comment.swift */,
 			);
-			name = PFObjects;
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,7 +427,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = SCAM16;
 				TargetAttributes = {
 					FF4733BA1E59419300C4FE23 = {
@@ -631,7 +644,6 @@
 				FF4911661E59766D00BA6960 /* LoginViewController.swift in Sources */,
 				FFC5C4101EB4431700F7279D /* ProfileTableViewController.swift in Sources */,
 				FFC5C4141EB47ABD00F7279D /* CompletePost.swift in Sources */,
-				FF10636C1E61536500A3B7A3 /* DashboardViewController.swift in Sources */,
 				FF7094A91E6B5F11002E14EB /* InitialProfileViewController.swift in Sources */,
 				FFE7A21C1E7642BA00C7CDA2 /* ChatRoom.swift in Sources */,
 				FFD457BC1ECC49C7003249E4 /* ConnectViewController.swift in Sources */,

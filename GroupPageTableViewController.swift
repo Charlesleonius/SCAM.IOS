@@ -24,7 +24,7 @@ class GroupPageTableViewController: UITableViewController {
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        let currentProfile = PFUser.currentProfile()
+        let currentProfile = User.currentProfile()
         
         var groupJoined = false
         for profile in group!.profilePointers! {
@@ -41,7 +41,7 @@ class GroupPageTableViewController: UITableViewController {
             joinedButton.setTitle("Join", for: .normal)
         }
         
-        if (group!.profilePointers!.contains(PFUser.currentProfile()!)) {
+        if (group!.profilePointers!.contains(User.currentProfile()!)) {
             joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
             joinedButton.setTitle("Joined", for: .normal)
         } else {
@@ -207,7 +207,7 @@ class GroupPageTableViewController: UITableViewController {
         
         if (post.helped != nil) {
             for profile in post.helped! {
-                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                if (profile.objectId! == User.currentProfile()?.objectId!) {
                     cell.findUsefulButton.setTitle("Nevermind", for: .normal)
                 }
             }

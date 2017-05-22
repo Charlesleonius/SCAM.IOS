@@ -119,7 +119,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         if (room.profilePointers?.count == 1) {
             for profile in room.profilePointers! {
-                if (profile.objectId != PFUser.currentProfile()?.objectId) {
+                if (profile.objectId != User.currentProfile()?.objectId) {
                     profile.fetchInBackground(block: { (updatedProfile: PFObject?, error: Error?) in
                         if (error == nil) {
                             let updatedProfile = updatedProfile as! Profile

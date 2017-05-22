@@ -23,8 +23,6 @@ class InitialExtraCurricularProfileViewController: UIViewController, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(user)
-        
         self.hideKeyboardWhenTappedAround()
         //Add Done Button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.saveInfo(_:)))
@@ -138,7 +136,7 @@ class InitialExtraCurricularProfileViewController: UIViewController, UITableView
                 let dashboard = self.storyboard?.instantiateViewController(withIdentifier: "DashboardNavigationController")
                 self.present(dashboard!, animated: true, completion: nil)
             } else {
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 SCLAlertView().showError("Ooops", subTitle: "Something went wrong saving your info. Please try again later")
             }
         })

@@ -49,7 +49,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
         
         do {
             let query = Profile.query()
-            let profiles = try query?.whereKey("user", notEqualTo: PFUser.current()).findObjects()
+            let profiles = try query?.whereKey("user", notEqualTo: PFUser.current()!).findObjects()
             for profile in profiles as! [Profile] {
                 let model = ParseContactModel()
                 model.contactTitle = profile.name
@@ -87,7 +87,7 @@ class NewGroupViewController: UIViewController, MBContactPickerDelegate, MBConta
             group.add(pointer, forKey: "profilePointers")
             group.relation(forKey: "profiles").add(contact.profile!)
         }
-        group.relation(forKey: "profiles").add(PFUser.currentProfile()!)
+        group.relation(forKey: "profiles").add(User.currentProfile()!)
         group.saveInBackground { (success: Bool, error: Error?) in
             if (error == nil) {
                 self.navigationController?.popViewController(animated: true)

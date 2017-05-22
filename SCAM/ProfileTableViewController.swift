@@ -28,7 +28,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureExpandingMenuButton()
-        self.user = PFUser.currentUserSubclass()
+        self.user = User.current()!
         userInfoTable.refreshControl = UIRefreshControl()
         userInfoTable.refreshControl?.addTarget(self, action: #selector(self.refresh), for: .allEvents)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.changeProfilePicture(_:)))
@@ -185,11 +185,9 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         self.pickedImage = pickedImage
         self.profileImageView.image = pickedImage.circle
         picker.dismiss(animated: true, completion: nil)
-        if (pickedImage != nil) {
-            let file = PFFile(data: pickedImage.jpegData(.low)!)
-            user?.profileImage = file
-            user?.saveInBackground()
-        }
+        let file = PFFile(data: pickedImage.jpegData(.low)!)
+        user?.profileImage = file
+        user?.saveInBackground()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

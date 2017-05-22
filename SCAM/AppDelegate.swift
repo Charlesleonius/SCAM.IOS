@@ -49,19 +49,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ChatRoomObserver.registerSubclass()
         Group.registerSubclass()
         Post.registerSubclass()
+        Profile.registerSubclass()
         
+        //Enable Caching
         Parse.enableLocalDatastore()
+        
+        //Configure Server Ingo
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
             ParseMutableClientConfiguration.applicationId = "scam16"
             ParseMutableClientConfiguration.clientKey = "scamClientKey"
             ParseMutableClientConfiguration.server = "https://scam16.herokuapp.com/parse"
         })
         Parse.initialize(with: parseConfiguration)
+        
+        //Enable Auto-Login
         PFUser.enableAutomaticUser()
+        
+        //Default security for users (Only user and server have read or write access
         let defaultACL = PFACL();
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
         
+        //Autlogin
         if (PFUser.current() != nil) {
+            //If user session is no longer valid log them out
             PFSession.getCurrentSessionInBackground { (session: PFSession?, error: Error?) in
                 if (session == nil) {
                     PFUser.logOut()
@@ -71,16 +81,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.rootViewController = rootView
                 }
             }
+            //Set initial view
             let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var rootView = storyboard.instantiateViewController(withIdentifier: "DashboardNavigationController")
-            if let completedRequiredFields = PFUser.currentUserSubclass()?.hasCompletedRequiredFields {
-                if (!completedRequiredFields) {
+            
+            //If user has not filled in the required information then redirect them to the information input page
+            if (!User.current()!.hasCompletedRequiredFields) {
                     rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
-                }
-
-            } else {
-                rootView = storyboard.instantiateViewController(withIdentifier: "requiredProfileNavigationController")
             }
+            
+            //Set view
             self.window?.rootViewController?.dismissKeyboard()
             self.window?.rootViewController = rootView
             UIApplication.shared.statusBarStyle = .lightContent
@@ -122,27 +132,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func pushHandler(push: NSDictionary) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshRooms"), object: nil)
     }
+    
+    //For use at a later time
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+ 
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+  
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
     }
 
 }
@@ -162,14 +172,6 @@ extension UIViewController {
         menuButton.enabledFoldingAnimations = .MenuItemBound
         self.view.addSubview(menuButton)
         
-        /**
-        let friends = ExpandingMenuItem(size: menuButtonSize, title: "Friends", image: #imageLiteral(resourceName: "friends"), highlightedImage: #imageLiteral(resourceName: "friends"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroupNavigationViewController")
-            self.present(vc!, animated: true, completion: nil)
-        }
-        menuButton.addMenuItems([friends])
-        
-         **/
         if (!(self is ProfileTableViewController)) {
             let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: #imageLiteral(resourceName: "profileMenuButton"), highlightedImage: #imageLiteral(resourceName: "profileMenuButton"), backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewNavigationController")
@@ -327,16 +329,5 @@ extension UIView {
 }
 
 extension PFUser {
-    static func currentProfile() -> Profile? {
-        if (PFUser.current() != nil) {
-            return PFUser.current()!["profile"] as? Profile
-        }
-        return nil
-    }
-    static func currentUserSubclass() -> User? {
-        if (PFUser.current() != nil) {
-            return PFUser.current() as? User
-        }
-        return nil
-    }
+    
 }

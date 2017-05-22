@@ -10,9 +10,11 @@ import Parse
 
 class GroupMembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //Instance Varibales
     var group: Group?
     fileprivate var profiles: [Profile] = []
     
+    //Referencing Outlets
     @IBOutlet weak var memberTable: UITableView!
 
     override func viewDidLoad() {
@@ -21,28 +23,33 @@ class GroupMembersViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMember))
     }
     
+    
+    //To Be Implemented
+    
     @objc
     func addMember() {
-        print("adding")
+        
     }
     
     @IBAction func removeMember(_ sender: UIButton) {
-        print(sender.tag)
+        
     }
+    
+    //Table View Controllers
     
     @objc
     func objectsDidLoad(error: Error? = nil) {
         if (error == nil) {
             self.memberTable.reloadData()
         } else {
-            print(error?.localizedDescription)
+            print(error!.localizedDescription)
         }
     }
     
     @objc
     func loadObjects() {
         let query = group?.relation(forKey: "profiles").query()
-        query?.whereKey("objectId", notEqualTo: PFUser.currentProfile()?.objectId ?? "")
+        query?.whereKey("objectId", notEqualTo: User.currentProfile()?.objectId ?? "")
         query?.addDescendingOrder("name")
         query?.findObjectsInBackground(block: { (updatedProfiles: [PFObject]?, error: Error?) in
             if (error == nil) {

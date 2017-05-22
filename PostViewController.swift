@@ -83,7 +83,7 @@ class PostViewController: UITableViewController {
         
         if (post?.helped != nil) {
             for profile in post!.helped! {
-                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                if (profile.objectId! == User.currentProfile()?.objectId!) {
                     self.usefulButton.setTitle("Nevermind", for: .normal)
                 }
             }
@@ -222,7 +222,7 @@ class PostViewController: UITableViewController {
         
         if (comment.helped != nil) {
             for profile in comment.helped! {
-                if (profile.objectId! == PFUser.currentProfile()?.objectId!) {
+                if (profile.objectId! == User.currentProfile()?.objectId!) {
                     cell.findUsefulButton.setTitle("Nevermind", for: .normal)
                 }
             }

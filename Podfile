@@ -9,7 +9,7 @@ target 'SCAM' do
   pod 'SCLAlertView'
   pod 'JSQMessagesViewController'
   pod 'ParseLiveQuery'
-  pod 'ExpandingMenu'
+  pod 'ExpandingMenu', '~> 0.3'
   pod 'DropDown'
   pod 'DropdownMenu'
   pod 'MBContactPicker'
