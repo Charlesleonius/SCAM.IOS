@@ -77,9 +77,9 @@ class ChatRoomsViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (typeSelector.selectedSegmentIndex == 0) {
-            return groupRooms.count
+            return privateRooms.count
         }
-        return privateRooms.count
+        return groupRooms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
