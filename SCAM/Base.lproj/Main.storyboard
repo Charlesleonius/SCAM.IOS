@@ -221,7 +221,7 @@
                                         <rect key="frame" x="0.0" y="81" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JOH-rR-Mop" id="ajg-bB-6Ix">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yJB-xI-eP9">
@@ -1331,59 +1331,6 @@
             </objects>
             <point key="canvasLocation" x="4711.875" y="-1147.1830985915492"/>
         </scene>
-        <!--New Chat View Controller-->
-        <scene sceneID="ods-ur-ObP">
-            <objects>
-                <viewController storyboardIdentifier="NewChatViewController" id="uNy-sN-jUg" customClass="NewChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="l2J-ZL-EOS"/>
-                        <viewControllerLayoutGuide type="bottom" id="cFf-dF-m9F"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bsb-sW-TIz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlP-yV-nGt" customClass="MBContactPicker">
-                                <rect key="frame" x="0.0" y="28" width="320" height="84"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="84" id="uOf-Gp-jit"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="datasource" destination="bsb-sW-TIz" id="VER-Tw-lFX"/>
-                                    <outlet property="delegate" destination="bsb-sW-TIz" id="wLP-Yt-1sO"/>
-                                </connections>
-                            </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Mq-cAA">
-                                <rect key="frame" x="0.0" y="71" width="320" height="497"/>
-                                <connections>
-                                    <segue destination="Kbu-Bq-JZS" kind="embed" id="3ck-Fk-Lqh"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="top" secondItem="l2J-ZL-EOS" secondAttribute="bottom" constant="51" id="0gU-Fq-aCS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2Of-Mq-cAA" secondAttribute="trailing" constant="-16" id="Am7-nh-rtB"/>
-                            <constraint firstItem="VlP-yV-nGt" firstAttribute="leading" secondItem="bsb-sW-TIz" secondAttribute="leading" id="EfZ-np-DJC"/>
-                            <constraint firstAttribute="trailing" secondItem="VlP-yV-nGt" secondAttribute="trailing" id="MhM-ur-hhu"/>
-                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="leading" secondItem="bsb-sW-TIz" secondAttribute="leadingMargin" constant="-16" id="afT-fY-FGg"/>
-                            <constraint firstItem="VlP-yV-nGt" firstAttribute="top" secondItem="l2J-ZL-EOS" secondAttribute="bottom" constant="8" id="gJu-cB-45i"/>
-                            <constraint firstItem="2Of-Mq-cAA" firstAttribute="bottom" secondItem="cFf-dF-m9F" secondAttribute="top" id="tJt-vd-qxe"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="msc-7M-lsw"/>
-                    <connections>
-                        <outlet property="contactPickerView" destination="VlP-yV-nGt" id="4hU-Yl-FpG"/>
-                        <outlet property="messageView" destination="2Of-Mq-cAA" id="BA1-Pk-q3q"/>
-                        <outlet property="messageViewTopConstraint" destination="0gU-Fq-aCS" id="3wu-PS-wtU"/>
-                        <outlet property="pickerHeightConstraint" destination="uOf-Gp-jit" id="2N5-en-yUZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RKq-cr-lTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5559.375" y="-1145.0704225352113"/>
-        </scene>
         <!--SCAM-->
         <scene sceneID="AYj-JA-GPA">
             <objects>
@@ -2257,24 +2204,6 @@
             </objects>
             <point key="canvasLocation" x="2493.75" y="-1113.3802816901409"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="TqA-Zd-0TI">
-            <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="Kbu-Bq-JZS" customClass="ChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4Di-rx-mRE"/>
-                        <viewControllerLayoutGuide type="bottom" id="G1v-M7-hM5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Zu-Sm-xlg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="497"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ano-Il-L6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6296" y="-1192"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4eP-QE-gvh">
             <objects>
@@ -2422,6 +2351,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thm-eW-AyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5598.75" y="312.67605633802816"/>
+        </scene>
+        <!--New Chat View Controller-->
+        <scene sceneID="Ja2-4f-ZXc">
+            <objects>
+                <viewController storyboardIdentifier="NewChatViewController" id="vfe-b1-8n9" customClass="NewChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gql-3p-BoK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ftf-ys-tQd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7F3-3z-1Vt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jk-UT-Q4I">
+                                <rect key="frame" x="0.0" y="71" width="320" height="497"/>
+                                <connections>
+                                    <segue destination="uL4-ZR-fOq" kind="embed" id="y2B-Tb-Dgi"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdP-lC-KQi" customClass="MBContactPicker">
+                                <rect key="frame" x="0.0" y="28" width="320" height="84"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="NRd-TG-1bK"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="datasource" destination="7F3-3z-1Vt" id="lAy-HU-k3P"/>
+                                    <outlet property="delegate" destination="7F3-3z-1Vt" id="dH8-Hv-jd5"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Jk-UT-Q4I" secondAttribute="trailing" constant="-16" id="D0w-MI-7X8"/>
+                            <constraint firstItem="hdP-lC-KQi" firstAttribute="leading" secondItem="7F3-3z-1Vt" secondAttribute="leading" id="EN8-4j-5TY"/>
+                            <constraint firstItem="4Jk-UT-Q4I" firstAttribute="bottom" secondItem="Ftf-ys-tQd" secondAttribute="top" id="M77-pR-82b"/>
+                            <constraint firstItem="4Jk-UT-Q4I" firstAttribute="leading" secondItem="7F3-3z-1Vt" secondAttribute="leadingMargin" constant="-16" id="fMr-A1-aTr"/>
+                            <constraint firstAttribute="trailing" secondItem="hdP-lC-KQi" secondAttribute="trailing" id="ha0-FW-ooT"/>
+                            <constraint firstItem="4Jk-UT-Q4I" firstAttribute="top" secondItem="gql-3p-BoK" secondAttribute="bottom" constant="51" id="t4q-UF-oke"/>
+                            <constraint firstItem="hdP-lC-KQi" firstAttribute="top" secondItem="gql-3p-BoK" secondAttribute="bottom" constant="8" id="xrT-0A-5Wd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="a9s-nn-std"/>
+                    <connections>
+                        <outlet property="contactPickerView" destination="hdP-lC-KQi" id="051-MV-OOK"/>
+                        <outlet property="messageView" destination="4Jk-UT-Q4I" id="2s3-S6-GmF"/>
+                        <outlet property="messageViewTopConstraint" destination="t4q-UF-oke" id="kXn-H2-e5P"/>
+                        <outlet property="pickerHeightConstraint" destination="NRd-TG-1bK" id="GNu-oK-of2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qda-ku-J94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5559" y="-793"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="h27-LF-fXb">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="uL4-ZR-fOq" customClass="ChatViewController" customModule="SCAM" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eQ5-mI-shW"/>
+                        <viewControllerLayoutGuide type="bottom" id="XX8-1z-xbc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t02-0e-xEO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="497"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sV-7t-7ok" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6294" y="-840"/>
         </scene>
     </scenes>
     <resources>
