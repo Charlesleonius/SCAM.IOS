@@ -41,10 +41,20 @@ class GroupPageTableViewController: UITableViewController {
             joinedButton.setTitle("Join", for: .normal)
         }
         
-        if (group!.profilePointers!.contains(User.currentProfile()!)) {
+        
+        var joined = false
+        if (group?.profilePointers != nil) {
+            for profile in group!.profilePointers! {
+                if (profile.objectId == User.current()?.objectId) {
+                    joined = true
+                    joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+                    joinedButton.setTitle("Joined", for: .normal)
+                }
+            }
             joinedButton.setImage(#imageLiteral(resourceName: "check"), for: .normal)
             joinedButton.setTitle("Joined", for: .normal)
-        } else {
+        }
+        if (!joined) {
             joinedButton.addTarget(self, action: #selector(self.joinGroup(_:)), for: .touchDown)
         }
         
